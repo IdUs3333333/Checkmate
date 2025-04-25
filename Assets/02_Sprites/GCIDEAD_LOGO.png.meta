@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GCIDEAD_LOGO_0: -5330649633572065318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
