@@ -5,10 +5,10 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
-    [SerializeField] private static GameObject[] combatMaps;
-    [SerializeField] private static GameObject[] bossMaps;
-    [SerializeField] private static GameObject[] rewardMaps;
-    private Dictionary<MapType, GameObject[]> maps = new Dictionary<MapType, GameObject[]>()
+    private static MapBase[] combatMaps;
+    private static MapBase[] bossMaps;
+    private static MapBase[] rewardMaps;
+    private Dictionary<MapType, MapBase[]> maps = new Dictionary<MapType, MapBase[]>()
     {
         { MapType.NormalCombat, combatMaps },
         { MapType.EliteCombat, combatMaps },
@@ -25,7 +25,7 @@ public class MapGenerator : MonoBehaviour
     {
         Debug.Log("Generated Map");
         int n = Random.Range(0, maps[type].Length);
-        MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity).GetComponent<MapBase>();
+        MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 
         GameManager.Instance.player.transform.SetPositionAndRotation(map.playerSpawnpoint.position, Quaternion.identity);
         map.SpawnEnemies(0.5f);

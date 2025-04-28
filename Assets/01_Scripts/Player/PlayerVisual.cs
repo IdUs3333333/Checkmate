@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using AYellowpaper.SerializedCollections;
 
 public class PlayerVisual : MonoBehaviour
 {
-    [SerializeField] private Dictionary<ChessType, Sprite> chessSprite;
+    [SerializeField] private SerializedDictionary<ChessType, Sprite> chessSprite;
     PlayerInput input;
     private bool isMoving = false;
 
@@ -33,18 +34,16 @@ public class PlayerVisual : MonoBehaviour
 
     private IEnumerator MoveCoroutine()
     {
+        WaitForSeconds ws1 = new WaitForSeconds(0.2f);
+        WaitForSeconds ws2 = new WaitForSeconds(0.2f);
         transform.DORotate(new Vector3(0, 0, 10), 0.15f).SetEase(Ease.OutSine);
-        yield return new WaitForSeconds(0.2f);
-        yield return null;
+        yield return ws1;
         transform.DORotate(new Vector3(0, 0, 0), 0.15f).SetEase(Ease.InSine);
-        yield return new WaitForSeconds(0.15f);
-        yield return null;
+        yield return ws2;
         transform.DORotate(new Vector3(0, 0, -10), 0.15f).SetEase(Ease.OutSine);
-        yield return new WaitForSeconds(0.2f);
-        yield return null;
+        yield return ws1;
         transform.DORotate(new Vector3(0, 0, 0), 0.15f).SetEase(Ease.InSine);
-        yield return new WaitForSeconds(0.15f);
-        yield return null;
+        yield return ws2;
         StartCoroutine("MoveCoroutine");
     }
 

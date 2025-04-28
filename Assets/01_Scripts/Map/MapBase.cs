@@ -17,9 +17,14 @@ public class MapBase : MonoBehaviour
 
     public void SpawnEnemies(float delaySecond)
     {
-        foreach(EnemySpawnpoint spawnpoint in enemySpawnpoints)
-        {
+        Invoke("InvokedSpawnEnemies", delaySecond);
+    }
 
+    private void InvokedSpawnEnemies()
+    {
+        foreach (EnemySpawnpoint spawnpoint in enemySpawnpoints)
+        {
+            spawnpoint.EnemySpawn();
         }
     }
 }
