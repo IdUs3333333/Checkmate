@@ -40,7 +40,7 @@ public class IntroIcon : MonoBehaviour
         {
             if(Input.anyKeyDown)
             {
-                //SceneManager.LoadScene();  한번 합치자
+                SceneManager.LoadScene(1);
             }
         }
     }
