@@ -21,8 +21,8 @@ namespace FSM.State
 
         public virtual void EnterState()
         {
-            Agent.AnimatorCompo.SetBool(StateHash, true);
-            Agent.StartCoroutine(Coroutine);
+            // Agent.AnimatorCompo.SetBool(StateHash, true);
+            // Agent.StartCoroutine(Coroutine);
         }
         public virtual void UpdateState() 
         {
@@ -30,12 +30,12 @@ namespace FSM.State
 
         public virtual void ExitState()
         {
-            Agent.AnimatorCompo.SetBool(StateHash, false);
-            if (Coroutine != null)
-            {
-                Agent.StopCoroutine(Coroutine);
-                Coroutine = null;
-            }
+            // Agent.AnimatorCompo.SetBool(StateHash, false);
+            // if (Coroutine != null)
+            // {
+            //     Agent.StopCoroutine(Coroutine);
+            //     Coroutine = null;
+            // }
         }
         public virtual void OnAnimationEvent(string evt) { }
     }
