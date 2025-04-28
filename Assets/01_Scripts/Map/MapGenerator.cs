@@ -26,5 +26,8 @@ public class MapGenerator : MonoBehaviour
         Debug.Log("Generated Map");
         int n = Random.Range(0, maps[type].Length);
         MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity).GetComponent<MapBase>();
+
+        GameManager.Instance.player.transform.SetPositionAndRotation(map.playerSpawnpoint.position, Quaternion.identity);
+        map.SpawnEnemies(0.5f);
     }
 }

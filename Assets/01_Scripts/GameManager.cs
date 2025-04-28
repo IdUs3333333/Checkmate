@@ -7,6 +7,13 @@ public class GameManager : MonoBehaviour
     public int gameScore;
     public int maxGameScore;
 
+    public Player player;
+
+    private void Awake()
+    {
+        player = FindFirstObjectByType<Player>();
+    }
+
     public void GetScore(int score)
     {
         gameScore += score;
