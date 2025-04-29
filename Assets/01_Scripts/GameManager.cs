@@ -18,4 +18,9 @@ public class GameManager : MonoBehaviour
     {
         gameScore += score;
     }
+
+    public void GameOver()
+    {
+
+    }
 }
