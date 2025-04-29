@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float moveSpeed;
     public ChessType chessType;
 
-    public List<ScriptableObject> reinforcements;
+    public GameObject[] reinforcements;
 
     [HideInInspector] public float[] attackRange = { 0.5f, 2.25f, 1.25f, 2.5f, 3.75f, 1f };
 }

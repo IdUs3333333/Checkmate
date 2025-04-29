@@ -8,4 +8,6 @@ public class Player : MonoBehaviour
     {
         stats = GetComponent<PlayerStats>();
     }
+
+
 }
