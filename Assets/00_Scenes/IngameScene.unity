@@ -241,6 +241,8 @@ MonoBehaviour:
   combatMapsInput: []
   bossMapsInput: []
   rewardMapsInput: []
+  currentMap: {fileID: 0}
+  mapPortal: {fileID: 0}
 --- !u!1 &610274324
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,9 +577,9 @@ Transform:
   m_GameObject: {fileID: 981568417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 610274325}
   m_Father: {fileID: 0}
@@ -631,10 +633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348e9d0eda100924abdb8e7c56a0e77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 4
   attackDamage: 3
   attackSpeed: 0.5
-  moveSpeed: 2.5
+  moveSpeed: 3
   chessType: 0
   reinforcements: []
   attackRange:
@@ -678,8 +680,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.275}
-  m_Size: {x: 0.35, y: 0.575}
+  m_Offset: {x: 0, y: 0.55}
+  m_Size: {x: 0.7, y: 1.15}
   m_Direction: 0
 --- !u!1 &1092264029
 GameObject:
@@ -925,7 +927,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1135,6 +1137,7 @@ MonoBehaviour:
   GameOverPanel: {fileID: 1276360306}
   gameScore: 0
   maxGameScore: 0
+  clearedRoomCount: 0
   player: {fileID: 981568423}
 --- !u!1 &1749010817
 GameObject:

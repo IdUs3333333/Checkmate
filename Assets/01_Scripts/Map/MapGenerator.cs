@@ -20,6 +20,9 @@ public class MapGenerator : MonoBehaviour
         { MapType.Reward, rewardMaps }
     };
 
+    public MapBase currentMap;
+    public GameObject mapPortal;
+
     private void Awake()
     {
         if (Instance == null)
@@ -41,9 +44,16 @@ public class MapGenerator : MonoBehaviour
     {
         Debug.Log("Generating Map");
         int n = Random.Range(0, maps[type].Length);
-        MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
+        currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 
-        GameManager.Instance.player.transform.SetPositionAndRotation(map.playerSpawnpoint.position, Quaternion.identity);
-        map.SpawnEnemies(0.5f);
+        GameManager.Instance.player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
+        currentMap.SpawnEnemies(0.5f);
+    }
+
+    public void GeneratePortal()
+    {
+        Transform portalPoint = currentMap.portalSpawnpoint;
+        GameObject portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0), Quaternion.identity);
+        GameObject portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0), Quaternion.identity);
     }
 }
