@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemySpawnpoint : MonoBehaviour
 {
-    public GameObject enemy;
+    public Enemy enemy;
 
     public void EnemySpawn()
     {

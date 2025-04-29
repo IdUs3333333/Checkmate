@@ -4,8 +4,9 @@ using DG.Tweening;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField] Image[] hpHearts;
-    [SerializeField] Sprite[] heartSprites;
+    [SerializeField] private Image[] hpHearts;
+    [SerializeField] private Sprite[] heartSprites;
+
     public int playerHP = 4;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class PlayerHP : MonoBehaviour
 
     private void Update()
     {
+        // Debug
         if (Input.GetKeyDown(KeyCode.R)) Damage();
         if (Input.GetKeyDown(KeyCode.T)) Heal();
     }
@@ -27,11 +29,15 @@ public class PlayerHP : MonoBehaviour
     {
         if(playerHP > -1)
         {
-            playerHP--;
-            playerHP = Mathf.Clamp(playerHP, 0, 4);
+            playerHP = Mathf.Clamp(--playerHP, 0, 4);
 
-            hpHearts[playerHP].sprite = heartSprites[1];
-            hpHearts[playerHP].gameObject.transform.DOShakePosition(0.5f, 10, 100);
+            Image heart = hpHearts[playerHP];
+            heart.sprite = heartSprites[1];
+            heart.gameObject.transform.DOComplete();
+            heart.gameObject.transform.DOShakePosition(0.5f, 10, 100);
+
+            Camera.main.transform.DOComplete();
+            Camera.main.transform.DOShakePosition(0.25f, 1, 100);
         }
     }
 
@@ -39,11 +45,12 @@ public class PlayerHP : MonoBehaviour
     {
         if(playerHP < 4)
         {
-            hpHearts[playerHP].sprite = heartSprites[0];
-            hpHearts[playerHP].gameObject.transform.DOShakeScale(0.25f, 0.5f);
+            Image heart = hpHearts[playerHP];
+            heart.sprite = heartSprites[0];
+            heart.gameObject.transform.DOComplete();
+            heart.gameObject.transform.DOShakeScale(0.25f, 0.5f);
 
-            playerHP++;
-            playerHP = Mathf.Clamp(playerHP, 0, 4);
+            playerHP = Mathf.Clamp(++playerHP, 0, 4);
         }
     }
 }

@@ -5,6 +5,10 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
+    public MapBase[] combatMapsInput;
+    public MapBase[] bossMapsInput;
+    public MapBase[] rewardMapsInput;
+
     private static MapBase[] combatMaps;
     private static MapBase[] bossMaps;
     private static MapBase[] rewardMaps;
@@ -19,11 +23,14 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
         GenerateMap(MapType.NormalCombat);
+        combatMaps = combatMapsInput;
+        bossMaps = bossMapsInput;
+        rewardMaps = rewardMapsInput;
     }
 
     public void GenerateMap(MapType type)
     {
-        Debug.Log("Generated Map");
+        Debug.Log("Generating Map");
         int n = Random.Range(0, maps[type].Length);
         MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 
