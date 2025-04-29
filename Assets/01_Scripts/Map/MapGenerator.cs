@@ -22,6 +22,15 @@ public class MapGenerator : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         GenerateMap(MapType.NormalCombat);
         combatMaps = combatMapsInput;
         bossMaps = bossMapsInput;
