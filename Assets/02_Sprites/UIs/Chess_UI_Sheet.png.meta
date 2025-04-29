@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Chess_UI_Sheet_0: 5677892911709899126
+      Chess_UI_Sheet_1: 5099041483365257173
+      Chess_UI_Sheet_2: -5584613697488249896
+      Chess_UI_Sheet_3: -7178816545288332572
+      Chess_UI_Sheet_4: 7234684595800256111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
