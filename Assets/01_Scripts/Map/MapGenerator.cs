@@ -14,14 +14,14 @@ public class MapGenerator : MonoBehaviour
     private static MapBase[] rewardMaps;
     private Dictionary<MapType, MapBase[]> maps = new Dictionary<MapType, MapBase[]>()
     {
-        { MapType.NormalCombat, combatMaps },
+        { MapType.BasicCombat, combatMaps },
         { MapType.EliteCombat, combatMaps },
         { MapType.BossCombat, bossMaps },
         { MapType.Reward, rewardMaps }
     };
 
     public MapBase currentMap;
-    public GameObject mapPortal;
+    public Portal mapPortal;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class MapGenerator : MonoBehaviour
             Destroy(gameObject);
         }
 
-        GenerateMap(MapType.NormalCombat);
+        GenerateMap(MapType.BasicCombat);
         combatMaps = combatMapsInput;
         bossMaps = bossMapsInput;
         rewardMaps = rewardMapsInput;
@@ -53,7 +53,10 @@ public class MapGenerator : MonoBehaviour
     public void GeneratePortal()
     {
         Transform portalPoint = currentMap.portalSpawnpoint;
-        GameObject portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0), Quaternion.identity);
-        GameObject portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0), Quaternion.identity);
+        Portal portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0), Quaternion.identity);
+        Portal portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0), Quaternion.identity);
+
+        portal1.Init();
+        portal2.Init();
     }
 }

@@ -2,11 +2,27 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] private Sprite interactionButton;
+    [SerializeField] private GameObject interactionButton;
+
+    private Player player;
+    public MapType portalType;
+
+    public float interactDist = 1.5f;
+
+    private void Awake()
+    {
+        player = GameManager.Instance.player;
+    }
+
+    public void Init()
+    {
+
+    }
 
     private void Update()
     {
-        
+        float dist = (player.transform.position - transform.position).magnitude;
+        interactionButton.SetActive(dist <= interactDist);
     }
 
     public void Interact()

@@ -49,4 +49,14 @@ public class GameManager : MonoBehaviour
     {
         MapGenerator.Instance.GenerateMap(type);
     }
+
+    public void Replay()
+    {
+        SE.ReloadScene();
+    }
+
+    public void Exit()
+    {
+        SE.LoadSceneWithAnimation(SE.lobby);
+    }
 }

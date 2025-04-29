@@ -3,7 +3,7 @@ using System.Linq;
 
 public enum MapType
 {
-    NormalCombat, EliteCombat, BossCombat, Reward
+    BasicCombat, ExtendedCombat, EliteCombat, BossCombat, Reward
 }
 
 public class MapBase : MonoBehaviour
