@@ -26,7 +26,7 @@ public class PlayerVisual : MonoBehaviour
         else if(isMoving == true && movement.magnitude == 0)
         {
             StopCoroutine("MoveCoroutine");
-            DOTween.Clear();
+            transform.DOComplete();
             transform.rotation = Quaternion.Euler(Vector3.zero);
             isMoving = false;
         }

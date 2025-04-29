@@ -27,7 +27,7 @@ public class PlayerHP : MonoBehaviour
 
     public void Damage()
     {
-        if(playerHP > -1)
+        if(playerHP > 0)
         {
             playerHP = Mathf.Clamp(--playerHP, 0, 4);
 
@@ -38,6 +38,11 @@ public class PlayerHP : MonoBehaviour
 
             Camera.main.transform.DOComplete();
             Camera.main.transform.DOShakePosition(0.25f, 1, 100);
+
+            if(playerHP <= 0)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
     }
 

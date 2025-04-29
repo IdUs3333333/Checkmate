@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public CanvasGroup GameOverPanel;
 
     public int gameScore;
     public int maxGameScore;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         player = FindFirstObjectByType<Player>();
+        GameOverPanel.Close();
+        Time.timeScale = 1;
     }
 
     public void GetScore(int score)
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        GameOverPanel.Open();
+        Time.timeScale = 0;
     }
 }
