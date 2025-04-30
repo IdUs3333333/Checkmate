@@ -1,11 +1,6 @@
 using UnityEngine;
 using System.Linq;
 
-public enum MapType
-{
-    BasicCombat, ExtendedCombat, EliteCombat, BossCombat, Reward
-}
-
 public class MapBase : MonoBehaviour
 {
     public EnemySpawnpoint[] enemySpawnpoints;

@@ -5,10 +5,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public CanvasGroup GameOverPanel;
 
+    public Difficulty difficulty;
+
     public int gameScore = 0;
     public int maxGameScore = 0;
 
     public int clearedRoomCount = 0;
+    public int currentFloor = 1;
 
     public Player player;
 

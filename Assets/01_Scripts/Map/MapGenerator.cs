@@ -53,8 +53,22 @@ public class MapGenerator : MonoBehaviour
     public void GeneratePortal()
     {
         Transform portalPoint = currentMap.portalSpawnpoint;
-        Portal portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0), Quaternion.identity);
-        Portal portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0), Quaternion.identity);
+        
+        if(GameManager.Instance.difficulty == Difficulty.Easy)
+        {
+
+        }
+        else if(GameManager.Instance.difficulty == Difficulty.Normal)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        Portal portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0, 0), Quaternion.identity);
+        Portal portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
 
         portal1.Init();
         portal2.Init();
