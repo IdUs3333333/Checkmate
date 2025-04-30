@@ -1,0 +1,14 @@
+{
+    "easy": {
+        "highScore": 0,
+        "shortest_Record": 0.0
+    },
+    "normal": {
+        "highScore": 0,
+        "shortest_Record": 0.0
+    },
+    "hard": {
+        "highScore": 0,
+        "shortest_Record": 0.0
+    }
+}
