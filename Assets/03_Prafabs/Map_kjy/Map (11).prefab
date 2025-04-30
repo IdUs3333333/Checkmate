@@ -12865,6 +12865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191901446894015365}
+  - component: {fileID: 7162032335129262411}
   m_Layer: 0
   m_Name: Map (11)
   m_TagString: Untagged
@@ -12888,3 +12889,20 @@ Transform:
   - {fileID: 7775818913468758169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7162032335129262411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518543373779852591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7a006e6b169ba4dbb2c00819b69de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnpoints: []
+  playerSpawnpoint: {fileID: 0}
+  maxTurnCount: 1
+  currentTurnCount: 0
+  currentEnemyCount: 0

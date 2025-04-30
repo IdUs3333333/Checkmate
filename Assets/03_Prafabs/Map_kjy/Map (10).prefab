@@ -1596,7 +1596,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -7675,7 +7675,7 @@ Tilemap:
     m_Data: {fileID: -645347971, guid: e82e45a7000133a44a86fcff82ac33e5, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -1328563009, guid: 8e6281b75d4c6f842b9de19eb14071c9, type: 3}
-  - m_RefCount: 70
+  - m_RefCount: 71
     m_Data: {fileID: -143161209, guid: 8e6281b75d4c6f842b9de19eb14071c9, type: 3}
   - m_RefCount: 74
     m_Data: {fileID: -81192703, guid: 8e6281b75d4c6f842b9de19eb14071c9, type: 3}
@@ -7685,7 +7685,7 @@ Tilemap:
     m_Data: {fileID: -795875725, guid: 8e6281b75d4c6f842b9de19eb14071c9, type: 3}
   - m_RefCount: 14
     m_Data: {fileID: 92010968, guid: e82e45a7000133a44a86fcff82ac33e5, type: 3}
-  - m_RefCount: 6
+  - m_RefCount: 5
     m_Data: {fileID: -1461736597, guid: 8e6281b75d4c6f842b9de19eb14071c9, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 759
@@ -15475,6 +15475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2565204314800150734}
+  - component: {fileID: 5744906237242136895}
   m_Layer: 0
   m_Name: Map (10)
   m_TagString: Untagged
@@ -15498,3 +15499,20 @@ Transform:
   - {fileID: 4545700285055536471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5744906237242136895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623469582307445209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7a006e6b169ba4dbb2c00819b69de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnpoints: []
+  playerSpawnpoint: {fileID: 0}
+  maxTurnCount: 1
+  currentTurnCount: 0
+  currentEnemyCount: 0
