@@ -1,14 +1,11 @@
 using UnityEngine;
-
-public enum MapType
-{
-    NormalCombat, EliteCombat, BossCombat, Reward
-}
+using System.Linq;
 
 public class MapBase : MonoBehaviour
 {
     public EnemySpawnpoint[] enemySpawnpoints;
     public Transform playerSpawnpoint;
+    public Transform portalSpawnpoint;
 
     public int maxTurnCount = 1;
     public int currentTurnCount = 0;
@@ -19,6 +16,11 @@ public class MapBase : MonoBehaviour
     private void Awake()
     {
         maxEnemyCount = enemySpawnpoints.Length;
+
+        foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+        {
+            enemySpawnpoints.Append(point);
+        }
     }
 
     public void SpawnEnemies(float delaySecond)
@@ -27,6 +29,10 @@ public class MapBase : MonoBehaviour
         {
             Invoke("InvokedSpawnEnemies", delaySecond);
         }
+        else
+        {
+            GameManager.Instance.RoomCleared();
+        }
     }
 
     private void InvokedSpawnEnemies()
@@ -34,9 +40,9 @@ public class MapBase : MonoBehaviour
         currentTurnCount++;
         currentEnemyCount = maxEnemyCount;
 
-        foreach (EnemySpawnpoint spawnpoint in enemySpawnpoints)
+        foreach (EnemySpawnpoint point in enemySpawnpoints)
         {
-            spawnpoint.EnemySpawn();
+            point.EnemySpawn();
         }
     }
 
