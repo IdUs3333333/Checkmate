@@ -7,7 +7,7 @@ public enum Difficulty
 
 public enum MapType
 {
-    BasicCombat, ExtendedCombat, EliteCombat, BossCombat, Reward, Mystery
+    BasicCombat, ExtendedCombat, Reward, Mystery, EliteCombat, BossCombat
 }
 
 public class ME

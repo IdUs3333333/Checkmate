@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Portal : MonoBehaviour
 {
@@ -9,25 +11,36 @@ public class Portal : MonoBehaviour
 
     public float interactDist = 1.5f;
 
-    private void Awake()
+    private void Start()
     {
+        interactionButton.SetActive(false);
         player = GameManager.Instance.player;
     }
 
     public void Init()
     {
+        portalType = (MapType)Random.Range(0, 4);
+    }
 
+    public void Init(MapType exception)
+    {
+        portalType = exception;
     }
 
     private void Update()
     {
         float dist = (player.transform.position - transform.position).magnitude;
+        Debug.Log("dist : " + dist);
         interactionButton.SetActive(dist <= interactDist);
+
+        if(Input.GetKeyDown(KeyCode.F) && interactionButton.activeSelf)
+        {
+            Interact();
+        }
     }
 
     public void Interact()
     {
-        MapType randomMapType = (MapType)Random.Range(0, 4);
-        GameManager.Instance.PortalInteract(randomMapType);
+        GameManager.Instance.PortalInteract(portalType);
     }
 }
