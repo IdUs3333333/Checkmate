@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawnpoint : MonoBehaviour
 {
-    public Enemy enemy;
+    public List<Enemy> enemy;
 
-    public void EnemySpawn()
+    public void EnemySpawn(int turn)
     {
-        Instantiate(enemy, transform.position, Quaternion.identity);
+        Instantiate(enemy[turn - 1], transform.position, Quaternion.identity);
     }
 }

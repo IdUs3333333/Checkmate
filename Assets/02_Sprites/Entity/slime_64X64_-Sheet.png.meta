@@ -1,28 +1,58 @@
 fileFormatVersion: 2
-guid: 011c323745d592c4396b7300316c6d84
+guid: 370eaa977dc55364f9385081bfa38f61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1610048046040151737
-    second: Checkmate_UI_0
+      213: 750439442263967504
+    second: slime_64X64_-Sheet_0
   - first:
-      213: 1979802793755522844
-    second: Checkmate_UI_1
+      213: 408379901399985555
+    second: slime_64X64_-Sheet_1
   - first:
-      213: 976850044909198011
-    second: Checkmate_UI_2
+      213: -8547377942371527348
+    second: slime_64X64_-Sheet_2
   - first:
-      213: 5179106549971467196
-    second: Checkmate_UI_3
+      213: 5894135436659654048
+    second: slime_64X64_-Sheet_3
   - first:
-      213: 556214020887928240
-    second: Checkmate_UI_4
+      213: 8823525374662821669
+    second: slime_64X64_-Sheet_4
   - first:
-      213: -7528758842284067052
-    second: Checkmate_UI_5
+      213: 7551833284288878006
+    second: slime_64X64_-Sheet_5
   - first:
-      213: 608057427023481274
-    second: Checkmate_UI_6
+      213: -7070211896378818216
+    second: slime_64X64_-Sheet_6
+  - first:
+      213: 3670544188362292943
+    second: slime_64X64_-Sheet_7
+  - first:
+      213: 9194106911488167799
+    second: slime_64X64_-Sheet_8
+  - first:
+      213: -5615037064974377144
+    second: slime_64X64_-Sheet_9
+  - first:
+      213: -7590590860798061428
+    second: slime_64X64_-Sheet_10
+  - first:
+      213: -294201654660747053
+    second: slime_64X64_-Sheet_11
+  - first:
+      213: 350735622759216437
+    second: slime_64X64_-Sheet_12
+  - first:
+      213: -2520867958482687441
+    second: slime_64X64_-Sheet_13
+  - first:
+      213: -6964415524936240610
+    second: slime_64X64_-Sheet_14
+  - first:
+      213: -5504098538939285349
+    second: slime_64X64_-Sheet_15
+  - first:
+      213: 5560690839838742639
+    second: slime_64X64_-Sheet_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +99,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +120,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -144,375 +174,375 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Checkmate_UI_0
+      name: slime_64X64_-Sheet_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 749077025d5f7a9e0800000000000000
-      internalID: -1610048046040151737
+      spriteID: b840ae7f5b97be04faf41f5150dedeb5
+      internalID: -596123332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 144
-        width: 16
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c17bf17c62ca97b10800000000000000
-      internalID: 1979802793755522844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 144
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bba13a5b0f77e8d00800000000000000
-      internalID: 976850044909198011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 144
-        width: 16
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cbbb2f497f1efd740800000000000000
-      internalID: 5179106549971467196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_4
+      name: slime_64X64_-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 144
-        width: 16
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bddd1e74b118b700800000000000000
-      internalID: 556214020887928240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 417b316d8b9748790800000000000000
-      internalID: -7528758842284067052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_6
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 3
-        width: 70
-        height: 90
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ab9c5cc1201407800800000000000000
-      internalID: 608057427023481274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e15c12155c81f3449fec8c54f52be63
-      internalID: -244254638
+      spriteID: b908c794e5f6dd946b35e5757f7c2675
+      internalID: -1251692152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_8
+      name: slime_64X64_-Sheet_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 463168134cfb3e04ba7c2e8404642d49
-      internalID: -195923649
+      spriteID: 39ba453c8298d6746835162ed2e38d16
+      internalID: -458633988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_9
+      name: slime_64X64_-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2198d5f594dad644a8e84dcc55a1b60
+      internalID: 142467074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0de017eace1b549ac2659dc8dfd0f3
+      internalID: 1539340245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2326e77b845567b49a32a69d50079e89
+      internalID: -845376686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13dcd58d1185d5f47a16c726608c3eae
+      internalID: 250789145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da11e3ddfd6e37b448e517fb332f27da
+      internalID: 1848896353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_8
       rect:
         serializedVersion: 2
         x: 64
         y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 430fa5af28b3ae34a90f55e160bd5e20
-      internalID: 1415754722
+      spriteID: ffa63c53fcb77944bb6a30fa86c0a25a
+      internalID: 1942297635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_10
+      name: slime_64X64_-Sheet_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3dc67f458df23c49a2df89eb59748fa
-      internalID: -2123785353
+      spriteID: 5dbd247d0e267d644b10148239cc78d0
+      internalID: -1417503962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17e5f30f10907d84faeef219890df8db
-      internalID: -1581267105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_12
+      name: slime_64X64_-Sheet_10
       rect:
         serializedVersion: 2
         x: 64
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b661118c77003de4295822f780ffb0de
-      internalID: -603368662
+      spriteID: 12a02f33ed7f0444bac0e86d6bd387a2
+      internalID: 99302394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_13
+      name: slime_64X64_-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0958a3243ccf554f9e530b7c8fd9859
+      internalID: -1404439731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f1f45734687fae4db3ad85f0eb68e60
+      internalID: -829950909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7aec940fdcf3d468694d5a29a8529b
+      internalID: 1898121949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_64X64_-Sheet_14
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1dc24e29e93e674e9e32805efbfda63
-      internalID: 1961477826
+      spriteID: 2d74892abc73a1f40a256682ba53c598
+      internalID: 1351237954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_14
+      name: slime_64X64_-Sheet_15
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44493a6b46bf6b941b8096bd6e9a49b1
-      internalID: -640871029
+      spriteID: b3ff69c2e3564694484541c54d4be2e3
+      internalID: 72202465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkmate_UI_15
+      name: slime_64X64_-Sheet_16
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49d3a2a632afd5840a806b2bda46b3a7
-      internalID: 59856818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Checkmate_UI_16
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0da018acad6287f47b54b08a9b08d24f
-      internalID: -850965816
+      spriteID: 19e6462643069844aa132e992b994c28
+      internalID: -670674751
       vertices: []
       indices: 
       edges: []
@@ -521,7 +551,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 971a82208c9569d4181cd7c170d63e7c
+    spriteID: d9893bec6bfca474287428697a87a52c
     internalID: 0
     vertices: []
     indices: 
@@ -531,23 +561,23 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Checkmate_UI_0: -1610048046040151737
-      Checkmate_UI_1: 1979802793755522844
-      Checkmate_UI_10: -2123785353
-      Checkmate_UI_11: -1581267105
-      Checkmate_UI_12: -603368662
-      Checkmate_UI_13: 1961477826
-      Checkmate_UI_14: -640871029
-      Checkmate_UI_15: 59856818
-      Checkmate_UI_16: -850965816
-      Checkmate_UI_2: 976850044909198011
-      Checkmate_UI_3: 5179106549971467196
-      Checkmate_UI_4: 556214020887928240
-      Checkmate_UI_5: -7528758842284067052
-      Checkmate_UI_6: 608057427023481274
-      Checkmate_UI_7: -244254638
-      Checkmate_UI_8: -195923649
-      Checkmate_UI_9: 1415754722
+      slime_64X64_-Sheet_0: -596123332
+      slime_64X64_-Sheet_1: -1251692152
+      slime_64X64_-Sheet_10: 99302394
+      slime_64X64_-Sheet_11: -1404439731
+      slime_64X64_-Sheet_12: -829950909
+      slime_64X64_-Sheet_13: 1898121949
+      slime_64X64_-Sheet_14: 1351237954
+      slime_64X64_-Sheet_15: 72202465
+      slime_64X64_-Sheet_16: -670674751
+      slime_64X64_-Sheet_2: -458633988
+      slime_64X64_-Sheet_3: 142467074
+      slime_64X64_-Sheet_4: 1539340245
+      slime_64X64_-Sheet_5: -845376686
+      slime_64X64_-Sheet_6: 250789145
+      slime_64X64_-Sheet_7: 1848896353
+      slime_64X64_-Sheet_8: 1942297635
+      slime_64X64_-Sheet_9: -1417503962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

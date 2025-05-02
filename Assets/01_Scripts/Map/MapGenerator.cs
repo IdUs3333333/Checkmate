@@ -62,7 +62,7 @@ public class MapGenerator : MonoBehaviour
         {
 
         }
-        else
+        else if(GameManager.Instance.difficulty == Difficulty.Hard)
         {
 
         }

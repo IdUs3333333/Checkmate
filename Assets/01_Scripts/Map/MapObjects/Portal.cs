@@ -5,26 +5,37 @@ using UnityEngine.UI;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private GameObject interactionButton;
+    [SerializeField] private SpriteRenderer portalIcon;
+    [SerializeField] private List<Image> roomIcons;
 
     private Player player;
     public MapType portalType;
 
     public float interactDist = 1.5f;
+    private bool isInteractRequired = false;
 
     private void Start()
     {
         interactionButton.SetActive(false);
         player = GameManager.Instance.player;
+        player.input.OnInteract += OnInteract;
     }
 
     public void Init()
     {
         portalType = (MapType)Random.Range(0, 4);
+        portalIcon.sprite = roomIcons[(int)portalType].sprite;
     }
 
-    public void Init(MapType exception)
+    public void Init(MapType type)
     {
-        portalType = exception;
+        portalType = type;
+        portalIcon.sprite = roomIcons[(int)portalType].sprite;
+    }
+
+    private void OnInteract()
+    {
+        isInteractRequired = true;
     }
 
     private void Update()
@@ -33,8 +44,9 @@ public class Portal : MonoBehaviour
         Debug.Log("dist : " + dist);
         interactionButton.SetActive(dist <= interactDist);
 
-        if(Input.GetKeyDown(KeyCode.F) && interactionButton.activeSelf)
+        if(isInteractRequired && interactionButton.activeSelf)
         {
+            isInteractRequired = false;
             Interact();
         }
     }

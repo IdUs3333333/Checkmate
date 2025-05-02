@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
     Player player;
     PlayerStats stats;
     public event Action<Vector2> OnMove;
+    public event Action OnInteract;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         MoveInput();
+        InteractInput();
     }
 
     private void MoveInput()
@@ -24,5 +26,13 @@ public class PlayerInput : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         Vector2 movement = new Vector2(x, y) * stats.moveSpeed * Time.deltaTime;
         OnMove?.Invoke(movement);
+    }
+
+    private void InteractInput()
+    {
+        if(Input.GetKeyDown(KE.interact))
+        {
+            OnInteract?.Invoke();
+        }
     }
 }
