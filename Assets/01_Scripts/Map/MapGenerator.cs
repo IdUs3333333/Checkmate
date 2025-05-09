@@ -14,11 +14,14 @@ public class MapGenerator : MonoBehaviour
     private static MapBase[] rewardMaps;
     private Dictionary<MapType, MapBase[]> maps = new Dictionary<MapType, MapBase[]>()
     {
-        { MapType.NormalCombat, combatMaps },
+        { MapType.BasicCombat, combatMaps },
         { MapType.EliteCombat, combatMaps },
         { MapType.BossCombat, bossMaps },
         { MapType.Reward, rewardMaps }
     };
+
+    public MapBase currentMap;
+    public Portal mapPortal;
 
     private void Awake()
     {
@@ -31,7 +34,7 @@ public class MapGenerator : MonoBehaviour
             Destroy(gameObject);
         }
 
-        GenerateMap(MapType.NormalCombat);
+        GenerateMap(MapType.BasicCombat);
         combatMaps = combatMapsInput;
         bossMaps = bossMapsInput;
         rewardMaps = rewardMapsInput;
@@ -41,9 +44,33 @@ public class MapGenerator : MonoBehaviour
     {
         Debug.Log("Generating Map");
         int n = Random.Range(0, maps[type].Length);
-        MapBase map = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
+        currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 
-        GameManager.Instance.player.transform.SetPositionAndRotation(map.playerSpawnpoint.position, Quaternion.identity);
-        map.SpawnEnemies(0.5f);
+        GameManager.Instance.player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
+        currentMap.SpawnEnemies(0.5f);
+    }
+
+    public void GeneratePortal()
+    {
+        Transform portalPoint = currentMap.portalSpawnpoint;
+        
+        if(GameManager.Instance.difficulty == Difficulty.Easy)
+        {
+
+        }
+        else if(GameManager.Instance.difficulty == Difficulty.Normal)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        Portal portal1 = Instantiate(mapPortal, portalPoint.position - new Vector3(1.5f, 0, 0), Quaternion.identity);
+        Portal portal2 = Instantiate(mapPortal, portalPoint.position + new Vector3(1.5f, 0, 0), Quaternion.identity);
+
+        portal1.Init();
+        portal2.Init();
     }
 }
