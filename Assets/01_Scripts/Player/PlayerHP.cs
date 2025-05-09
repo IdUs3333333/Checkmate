@@ -25,11 +25,11 @@ public class PlayerHP : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) Heal();
     }
 
-    public void Damage()
+    public void Damage(int value = 1)
     {
         if(playerHP > 0)
         {
-            playerHP = Mathf.Clamp(--playerHP, 0, 4);
+            playerHP = Mathf.Clamp(playerHP - value, 0, 4);
 
             Image heart = hpHearts[playerHP];
             heart.sprite = heartSprites[1];
@@ -46,7 +46,7 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    public void Heal()
+    public void Heal(int value = 1)
     {
         if(playerHP < 4)
         {
@@ -55,7 +55,7 @@ public class PlayerHP : MonoBehaviour
             heart.gameObject.transform.DOComplete();
             heart.gameObject.transform.DOShakeScale(0.25f, 0.5f);
 
-            playerHP = Mathf.Clamp(++playerHP, 0, 4);
+            playerHP = Mathf.Clamp(playerHP + value, 0, 4);
         }
     }
 }

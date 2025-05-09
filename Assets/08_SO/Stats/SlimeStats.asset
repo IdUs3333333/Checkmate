@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc470b7bfd266a4698f849e5639c8b1, type: 3}
   m_Name: SlimeStats
   m_EditorClassIdentifier: 
-  HP: 0
-  moveSpeed: 0
-  attackDelay: 0
+  HP: 10
+  moveSpeed: 3
+  attackDelay: 2
   skillDelay: 0
-  attackDamage: 0
-  skillDamage: 0
-  detectRange: 0
-  attackRange: 0
+  attackDamage: 1
+  skillDamage: 2
+  detectRange: 6
+  attackRange: 2.5

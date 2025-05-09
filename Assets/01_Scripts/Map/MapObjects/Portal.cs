@@ -41,7 +41,6 @@ public class Portal : MonoBehaviour
     private void Update()
     {
         float dist = (player.transform.position - transform.position).magnitude;
-        Debug.Log("dist : " + dist);
         interactionButton.SetActive(dist <= interactDist);
 
         if(isInteractRequired && interactionButton.activeSelf)

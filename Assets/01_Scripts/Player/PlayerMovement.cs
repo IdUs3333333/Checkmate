@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerInput input;
+    private PlayerInput input;
+
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -13,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 movement)
     {
-        transform.position += (Vector3)movement;
+        if(canMove) transform.position += (Vector3)movement;
     }
 
     private void OnDestroy()

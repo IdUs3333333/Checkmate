@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour
     PlayerStats stats;
     public event Action<Vector2> OnMove;
     public event Action OnInteract;
+    public event Action OnMainSkill;
+    public event Action OnSubSkill;
 
     private void Awake()
     {
@@ -33,6 +35,14 @@ public class PlayerInput : MonoBehaviour
         if(Input.GetKeyDown(KE.interact))
         {
             OnInteract?.Invoke();
+        }
+        if (Input.GetKeyDown(KE.mainSkill))
+        {
+            OnMainSkill?.Invoke();
+        }
+        if (Input.GetKeyDown(KE.subSkill))
+        {
+            OnSubSkill?.Invoke();
         }
     }
 }
