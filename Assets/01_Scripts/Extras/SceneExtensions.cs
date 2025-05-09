@@ -17,10 +17,11 @@ public static class SE // Scene Extensions
         SceneManager.LoadScene(sceneIdx);
     }
 
-    public static void ReloadScene()
+    public static void ReloadScene(bool withAnimation = true)
     {
         string name = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(name);
+        if(withAnimation) Loading.Instance.StartLoad(name);
+        else SceneManager.LoadScene(name);
     }
 
     public static void LoadSceneWithAnimation(string sceneName)

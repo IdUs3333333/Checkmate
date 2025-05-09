@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
 
     [SerializeField] private float knockBackPower = 600f;
-    [SerializeField] private float knockBackTime = 0.25f;
+    [SerializeField] private float knockBackTime = 0.125f;
 
     private void Awake()
     {
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
     private void Hit(Vector2 dir)
     {
+        if (hp.isInvincible) return;
         hp.Damage();
         StartCoroutine(KnockBack(dir));
     }
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
     {
         movement.canMove = false;
         rb.AddForce(dir * knockBackPower);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(knockBackTime);
         rb.linearVelocity = Vector2.zero;
         movement.canMove = true;
     }

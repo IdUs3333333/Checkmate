@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] private Sprite[] heartSprites;
 
     public int playerHP = 4;
+    public float invincibleDuration = 0.5f;
+    public bool isInvincible = false;
 
     private void Awake()
     {
@@ -43,7 +46,16 @@ public class PlayerHP : MonoBehaviour
             {
                 GameManager.Instance.GameOver();
             }
+
+            StartCoroutine(InvincibilityTimer());
         }
+    }
+
+    private IEnumerator InvincibilityTimer()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleDuration);
+        isInvincible = false;
     }
 
     public void Heal(int value = 1)

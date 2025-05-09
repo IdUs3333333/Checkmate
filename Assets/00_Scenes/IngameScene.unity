@@ -2140,6 +2140,7 @@ MonoBehaviour:
   - {fileID: 2077263471863937899, guid: 944f398a84538364b94bb019b1052d38, type: 3}
   - {fileID: 3077006834679241968, guid: 944f398a84538364b94bb019b1052d38, type: 3}
   playerHP: 4
+  invincibleDuration: 0.5
 --- !u!1 &1991090845
 GameObject:
   m_ObjectHideFlags: 0

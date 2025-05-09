@@ -253,7 +253,7 @@ MonoBehaviour:
   movement: {fileID: 1677285868897476814}
   hp: {fileID: 0}
   knockBackPower: 600
-  knockBackTime: 0.25
+  knockBackTime: 0.125
 --- !u!114 &1382276166895459839
 MonoBehaviour:
   m_ObjectHideFlags: 0
