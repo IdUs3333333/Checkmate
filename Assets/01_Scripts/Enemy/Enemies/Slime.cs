@@ -9,6 +9,7 @@ public class Slime : Enemy
     private EnemyState currentState;
     private FSM fsm;
     private Player player;
+    private SlimeAttack attack;
 
     private Vector2 moveDir = Vector2.zero;
 
@@ -16,13 +17,10 @@ public class Slime : Enemy
     {
         currentState = EnemyState.Idle;
         player = GameManager.Instance.player;
+        attack = GetComponent<SlimeAttack>();
+
         fsm = new FSM(new IdleState(this));
         StartCoroutine(PatrolCoroutine());
-    }
-
-    private void Update()
-    {
-        Debug.Log("Slime State : " + currentState);
     }
 
     private void ChangeState(EnemyState nextState)
@@ -119,21 +117,19 @@ public class Slime : Enemy
     private IEnumerator AttackCoroutine()
     {
         float elapsed = 0f;
+        attack.Active(true);
+        moveDir = (player.transform.position - transform.position).normalized;
 
-        while(elapsed < stats.attackDelay)
+        while (elapsed < stats.attackDelay)
         {
-            if(!CanAttackPlayer())
-            {
-                ChangeState(EnemyState.Chase);
-                yield break;
-            }
+            attack.SetGauge(elapsed / stats.attackDelay);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        moveDir = (player.transform.position - transform.position).normalized;
         float dashTime = 0.5f;
         float dashSpeed = stats.moveSpeed * 3;
+        attack.Active(false);
         animator.SetTrigger("isDash");
 
         while (dashTime > 0f)
@@ -143,6 +139,7 @@ public class Slime : Enemy
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.25f);
         ChangeState(EnemyState.Chase);
     }
 

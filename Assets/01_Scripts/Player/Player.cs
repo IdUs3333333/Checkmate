@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
     public PlayerStats stats;
     public PlayerInput input;
     public PlayerMovement movement;
+    public PlayerVisual visual;
     public PlayerHP hp;
+    public PlayerAttack attack;
 
     private Rigidbody2D rb;
 
@@ -18,27 +20,30 @@ public class Player : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         input = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
+        visual = GetComponentInChildren<PlayerVisual>();
         hp = FindFirstObjectByType<PlayerHP>();
+        attack = GetComponent<PlayerAttack>();
 
         rb = GetComponent<Rigidbody2D>();
 
+        input.OnAttack += Attack;
         input.OnMainSkill += MainSkill;
         input.OnSubSkill += SubSkill;
     }
 
-    private void Update()
+    private void Attack()
     {
-        
-    }
-
-    private void MainSkill()
-    {
-
+        attack.Attack();
     }
 
     private void SubSkill()
     {
+        attack.SubSkill();
+    }
 
+    private void MainSkill()
+    {
+        attack.MainSkill();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +65,7 @@ public class Player : MonoBehaviour
     private IEnumerator KnockBack(Vector2 dir)
     {
         movement.canMove = false;
+        visual.Blink();
         rb.AddForce(dir * knockBackPower);
         yield return new WaitForSeconds(knockBackTime);
         rb.linearVelocity = Vector2.zero;

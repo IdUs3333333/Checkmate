@@ -26,6 +26,12 @@ public class PlayerHP : MonoBehaviour
         // Debug
         if (Input.GetKeyDown(KeyCode.R)) Damage();
         if (Input.GetKeyDown(KeyCode.T)) Heal();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Camera.main.transform.DOComplete();
+            Camera.main.transform.DOShakePosition(0.25f, 1, 100);
+        }
     }
 
     public void Damage(int value = 1)

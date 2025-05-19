@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     PlayerStats stats;
     public event Action<Vector2> OnMove;
     public event Action OnInteract;
+    public event Action OnAttack;
     public event Action OnMainSkill;
     public event Action OnSubSkill;
 
@@ -35,6 +36,10 @@ public class PlayerInput : MonoBehaviour
         if(Input.GetKeyDown(KE.interact))
         {
             OnInteract?.Invoke();
+        }
+        if(Input.GetKeyDown(KE.attack))
+        {
+            OnAttack?.Invoke();
         }
         if (Input.GetKeyDown(KE.mainSkill))
         {
