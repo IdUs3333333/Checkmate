@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public CanvasGroupPanel gameOverPanel;
+    public CanvasGroupPanel gameClearPanel;
 
     public Difficulty difficulty;
 
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
     {
         clearedRoomCount++;
         MapGenerator.Instance.GeneratePortal();
+    }
+
+    public void GameClear()
+    {
+        gameClearPanel.Open();
+        Time.timeScale = 0;
     }
 
     public void PortalInteract(MapType type)

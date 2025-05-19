@@ -2546,7 +2546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00b6284d39ffbd42bb36cd2f27ac200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 0}
+  gameOverPanel: {fileID: 1276360309}
+  gameClearPanel: {fileID: 0}
   difficulty: 0
   gameScore: 0
   maxGameScore: 0
