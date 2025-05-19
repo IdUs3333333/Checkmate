@@ -3,7 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public CanvasGroup GameOverPanel;
+    public CanvasGroupPanel gameOverPanel;
+    public CanvasGroupPanel gameClearPanel;
 
     public Difficulty difficulty;
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         player = FindFirstObjectByType<Player>();
-        GameOverPanel.Close();
+        gameOverPanel.Close();
         Time.timeScale = 1;
     }
 
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GameOverPanel.Open();
+        gameOverPanel.Open();
         Time.timeScale = 0;
     }
 
@@ -48,18 +50,14 @@ public class GameManager : MonoBehaviour
         MapGenerator.Instance.GeneratePortal();
     }
 
+    public void GameClear()
+    {
+        gameClearPanel.Open();
+        Time.timeScale = 0;
+    }
+
     public void PortalInteract(MapType type)
     {
         MapGenerator.Instance.GenerateMap(type);
-    }
-
-    public void Replay()
-    {
-        SE.ReloadScene();
-    }
-
-    public void Exit()
-    {
-        SE.LoadSceneWithAnimation(SE.lobby);
     }
 }

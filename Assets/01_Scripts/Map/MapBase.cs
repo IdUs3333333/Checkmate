@@ -42,7 +42,7 @@ public class MapBase : MonoBehaviour
 
         foreach (EnemySpawnpoint point in enemySpawnpoints)
         {
-            point.EnemySpawn();
+            point.EnemySpawn(currentTurnCount);
         }
     }
 
