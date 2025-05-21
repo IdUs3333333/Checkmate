@@ -2,12 +2,12 @@ using UnityEngine;
 
 public enum Difficulty
 {
-    Easy, Normal, Hard
+    Easy, Hard
 }
 
 public enum MapType
 {
-    BasicCombat, ExtendedCombat, Reward, Mystery, EliteCombat, BossCombat
+    BasicCombat, ExtendedCombat, Reward, Mystery, EliteCombat, BossCombat, StartRoom
 }
 
 public class ME

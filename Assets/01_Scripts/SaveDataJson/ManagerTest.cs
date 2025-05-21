@@ -17,12 +17,12 @@ public class ManagerTest : MonoBehaviour
     public void Checkscore()
     {
         scoretxt = scroe.text;
-        dataManager.TrySetHighScore(Difficulty.Normal, int.Parse(scoretxt));
+        dataManager.TrySetHighScore(Difficulty.Easy, int.Parse(scoretxt));
     }
     
     public void Checkrecord()
     {
         recordtxt = record.text;
-        dataManager.TrySetPlayTime(Difficulty.Normal, int.Parse(recordtxt));
+        dataManager.TrySetPlayTime(Difficulty.Easy, int.Parse(recordtxt));
     }
 }

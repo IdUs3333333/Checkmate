@@ -14,6 +14,8 @@ public class CanvasGroupPanel : MonoBehaviour
 
         replayButton.onClick.AddListener(Replay);
         returnButton.onClick.AddListener(Return);
+
+        Active(false);
     }
 
     public void Open()

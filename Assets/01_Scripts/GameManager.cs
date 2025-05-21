@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     public void RoomCleared()
     {
         clearedRoomCount++;
-        MapGenerator.Instance.GeneratePortal();
+        MapGenerator.Instance.OnRoomClear();
     }
 
     public void GameClear()
