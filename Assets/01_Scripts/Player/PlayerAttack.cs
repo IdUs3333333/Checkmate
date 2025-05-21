@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -6,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Player player;
 
     private Camera mainCam;
+    private Dictionary<ChessType, IAttackStrategy> attackStrategies;
 
     private bool isAttacking = false;
     private float attackRange = 0f;
@@ -14,52 +16,28 @@ public class PlayerAttack : MonoBehaviour
     {
         player = transform.parent.GetComponent<Player>();
         mainCam = Camera.main;
+
+        attackStrategies = new Dictionary<ChessType, IAttackStrategy>
+        {
+            { ChessType.Pawn, new PawnAttack() }
+        };
     }
 
     public void Attack()
     {
         Debug.Log("Attack Check");
-        if (!isAttacking)
+        if (!isAttacking && attackStrategies.TryGetValue(player.type, out var strategy))
         {
-            StartCoroutine(AttackCoroutine());
+            StartCoroutine(AttackCoroutine(strategy));
         }
     }
 
-    private IEnumerator AttackCoroutine()
+    private IEnumerator AttackCoroutine(IAttackStrategy strategy)
     {
         isAttacking = true;
         attackRange = player.stats.attackRange[(int)player.type];
-
-        switch(player.type)
-        {
-            case ChessType.Pawn:
-                Debug.Log("Pawn Attack!");
-                Vector2 dir = (mainCam.ScreenToWorldPoint(Input.mousePosition) - player.transform.position).normalized;
-                Vector2 pos = (Vector2)player.transform.position + dir * attackRange;
-                transform.position = pos;
-                break;
-
-            case ChessType.Bishop:
-                Debug.Log("Bishop Attack!");
-                break;
-
-            case ChessType.Knight:
-                Debug.Log("Knight Attack!");
-                break;
-
-            case ChessType.Rook:
-                Debug.Log("Rook Attack!");
-                break;
-
-            case ChessType.Queen:
-                Debug.Log("Queen Attack!");
-                break;
-
-            case ChessType.King:
-                Debug.Log("King Attack!");
-                break;
-        }
-        yield return new WaitForSeconds(0.2f);
+        yield return strategy.ExecuteAttack(player, transform, mainCam);
+        yield return new WaitForSeconds(player.stats.attackSpeed);
         isAttacking = false;
     }
 
@@ -71,10 +49,5 @@ public class PlayerAttack : MonoBehaviour
     public void MainSkill()
     {
 
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
     }
 }
