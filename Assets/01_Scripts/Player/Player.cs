@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public ChessType type;
+
     [SerializeField] private float knockBackPower = 600f;
     [SerializeField] private float knockBackTime = 0.125f;
 
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         visual = GetComponentInChildren<PlayerVisual>();
         hp = FindFirstObjectByType<PlayerHP>();
-        attack = GetComponent<PlayerAttack>();
+        attack = GetComponentInChildren<PlayerAttack>();
 
         rb = GetComponent<Rigidbody2D>();
 

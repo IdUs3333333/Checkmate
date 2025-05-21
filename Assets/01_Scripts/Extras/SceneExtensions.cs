@@ -40,9 +40,9 @@ public static class SE // Scene Extensions
         Loading.Instance.StartLoad(name);
     }
 
-    public static void LoadSceneWithAnimation(string sceneName)
+    public static void LoadSceneWithAnimation(string name)
     {
         Debug.Log("Loading Scene with Animations...");
-        Loading.Instance.StartLoad(sceneName);
+        Loading.Instance.StartLoad(name);
     }
 }
