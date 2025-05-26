@@ -7,12 +7,18 @@ using AYellowpaper.SerializedCollections;
 public class PlayerVisual : MonoBehaviour
 {
     [SerializeField] private SerializedDictionary<ChessType, Sprite> chessSprite;
-    PlayerInput input;
+
+    private PlayerInput input;
+    private SpriteRenderer sprite;
+
+    [SerializeField] private Material whiteMaterial;
+    
     private bool isMoving = false;
 
     private void Awake()
     {
         input = transform.parent.GetComponent<PlayerInput>();
+        sprite = GetComponent<SpriteRenderer>();
         input.OnMove += MoveVisual;
     }
 
@@ -45,6 +51,19 @@ public class PlayerVisual : MonoBehaviour
         transform.DORotate(new Vector3(0, 0, 0), 0.15f).SetEase(Ease.InSine);
         yield return ws2;
         StartCoroutine("MoveCoroutine");
+    }
+
+    public void Blink()
+    {
+        StartCoroutine(BlinkCoroutine());
+    }
+
+    private IEnumerator BlinkCoroutine()
+    {
+        Material baseMaterial = sprite.material;
+        sprite.material = whiteMaterial;
+        yield return new WaitForSeconds(0.1f);
+        sprite.material = baseMaterial;
     }
 
     private void OnDestroy()

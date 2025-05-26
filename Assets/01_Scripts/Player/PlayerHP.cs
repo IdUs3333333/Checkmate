@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] private Sprite[] heartSprites;
 
     public int playerHP = 4;
+    public float invincibleDuration = 0.5f;
+    public bool isInvincible = false;
 
     private void Awake()
     {
@@ -23,13 +26,19 @@ public class PlayerHP : MonoBehaviour
         // Debug
         if (Input.GetKeyDown(KeyCode.R)) Damage();
         if (Input.GetKeyDown(KeyCode.T)) Heal();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Camera.main.transform.DOComplete();
+            Camera.main.transform.DOShakePosition(0.25f, 1, 100);
+        }
     }
 
-    public void Damage()
+    public void Damage(int value = 1)
     {
         if(playerHP > 0)
         {
-            playerHP = Mathf.Clamp(--playerHP, 0, 4);
+            playerHP = Mathf.Clamp(playerHP - value, 0, 4);
 
             Image heart = hpHearts[playerHP];
             heart.sprite = heartSprites[1];
@@ -43,10 +52,19 @@ public class PlayerHP : MonoBehaviour
             {
                 GameManager.Instance.GameOver();
             }
+
+            StartCoroutine(InvincibilityTimer());
         }
     }
 
-    public void Heal()
+    private IEnumerator InvincibilityTimer()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleDuration);
+        isInvincible = false;
+    }
+
+    public void Heal(int value = 1)
     {
         if(playerHP < 4)
         {
@@ -55,7 +73,7 @@ public class PlayerHP : MonoBehaviour
             heart.gameObject.transform.DOComplete();
             heart.gameObject.transform.DOShakeScale(0.25f, 0.5f);
 
-            playerHP = Mathf.Clamp(++playerHP, 0, 4);
+            playerHP = Mathf.Clamp(playerHP + value, 0, 4);
         }
     }
 }
