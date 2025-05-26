@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2507524543938797795}
+  - {fileID: 5889956126983710788}
   - {fileID: 5199669647744532785}
   - {fileID: 3184117984342809293}
   - {fileID: 3844853199121550329}
@@ -74,6 +75,7 @@ MonoBehaviour:
   - {fileID: 4444671305628176797}
   - {fileID: 3857954676355854241}
   playerSpawnpoint: {fileID: 2507524543938797795}
+  portalSpawnpoint: {fileID: 5889956126983710788}
   maxTurnCount: 2
   currentTurnCount: 0
   currentEnemyCount: 0
@@ -32863,6 +32865,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &5650018317737494692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5889956126983710788}
+  m_Layer: 0
+  m_Name: PotalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5889956126983710788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650018317737494692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5408572760291493632}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1313509665275102958
 PrefabInstance:
   m_ObjectHideFlags: 0

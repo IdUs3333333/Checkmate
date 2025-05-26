@@ -46,6 +46,37 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &4169482964847067720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402917178425763749}
+  m_Layer: 0
+  m_Name: PotalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1402917178425763749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169482964847067720}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6290354712634589447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4708977326591334993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6312,6 +6343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1402917178425763749}
   - {fileID: 841172281531455953}
   - {fileID: 7987176426745282770}
   - {fileID: 1155603093029755785}
@@ -6348,6 +6380,7 @@ MonoBehaviour:
   - {fileID: 2973032497407179438}
   - {fileID: 294001568516287321}
   playerSpawnpoint: {fileID: 841172281531455953}
+  portalSpawnpoint: {fileID: 1402917178425763749}
   maxTurnCount: 3
   currentTurnCount: 0
   currentEnemyCount: 0

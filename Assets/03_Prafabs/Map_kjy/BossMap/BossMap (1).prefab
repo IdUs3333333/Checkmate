@@ -13106,6 +13106,37 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &6760159813990223854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5234276548058530659}
+  m_Layer: 0
+  m_Name: PotalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5234276548058530659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760159813990223854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4591292765245363486}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9155607200583033129
 GameObject:
   m_ObjectHideFlags: 0
@@ -13137,6 +13168,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 290846160746940672}
+  - {fileID: 5234276548058530659}
   - {fileID: 1550022979487704176}
   - {fileID: 5744444344085471782}
   - {fileID: 1239782832125376477}
@@ -13194,7 +13226,7 @@ MonoBehaviour:
   enemySpawnpoints:
   - {fileID: 1979820416991264656}
   playerSpawnpoint: {fileID: 290846160746940672}
-  portalSpawnpoint: {fileID: 0}
+  portalSpawnpoint: {fileID: 5234276548058530659}
   maxTurnCount: 1
   currentTurnCount: 0
   currentEnemyCount: 0

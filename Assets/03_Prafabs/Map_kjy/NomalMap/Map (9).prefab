@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2702656565233245960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537715339950840547}
+  m_Layer: 0
+  m_Name: PotalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537715339950840547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702656565233245960}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 191901446894015365}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3619873367072837479
 GameObject:
   m_ObjectHideFlags: 0
@@ -12957,6 +12988,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7974866103371934396}
+  - {fileID: 1537715339950840547}
   - {fileID: 3081170694010768926}
   - {fileID: 6307661703871243971}
   - {fileID: 4150398858279691132}
@@ -13010,7 +13042,7 @@ MonoBehaviour:
   - {fileID: 8850424982382290666}
   - {fileID: 2944470011922653522}
   playerSpawnpoint: {fileID: 7974866103371934396}
-  portalSpawnpoint: {fileID: 0}
+  portalSpawnpoint: {fileID: 1537715339950840547}
   maxTurnCount: 3
   currentTurnCount: 0
   currentEnemyCount: 0
