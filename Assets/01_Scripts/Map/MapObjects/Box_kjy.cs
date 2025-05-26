@@ -18,6 +18,7 @@ public class Box_kjy : MonoBehaviour
     //공격을 맞을 때만 파괴되도록 코드 수정 요망
     private void OnCollisionEnter2D(Collision2D collision)//충돌 체크
     {
+        if(collision.collider.tag == "EnemyAttacks"|| collision.collider.tag == "")
         Debug.Log("충돌함");
         boxHitCount++;//충돌 했음 증가
         if(boxHitCount >= boxDieCount)//파괴 조건 만족 체크
