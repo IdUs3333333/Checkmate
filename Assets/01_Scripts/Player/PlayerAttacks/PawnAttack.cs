@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PawnAttack : IAttackStrategy
 {
-    [SerializeField] private GameObject effectPrefab;
-
     public IEnumerator ExecuteAttack(Player player, Transform attackTransform, Camera maincam)
     {
         Debug.Log("Pawn Attack!");
@@ -12,9 +10,10 @@ public class PawnAttack : IAttackStrategy
         float angleThreshold = 45f;
 
         Vector2 attackDir = (maincam.ScreenToWorldPoint(Input.mousePosition) - player.transform.position).normalized;
-        Vector2 attackPos = (Vector2)player.transform.position + attackDir * attackRange;
+        Vector2 attackPos = (Vector2)player.transform.position + attackDir * attackRange * 3f;
 
-        GameObject.Instantiate(effectPrefab, attackPos, Quaternion.identity);
+        GameObject particle = GameObject.Instantiate(player.attack.pawnAttackParticle, attackPos, Quaternion.identity);
+        GameObject.Destroy(particle, 1f);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, attackRange);
         foreach(Collider2D enemy in hitEnemies)

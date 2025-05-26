@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Components")]
     public PlayerStats stats;
     public PlayerInput input;
     public PlayerMovement movement;

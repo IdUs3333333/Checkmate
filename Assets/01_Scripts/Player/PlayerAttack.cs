@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private Player player;
+    
+    [Header("Attack Particles")]
+    public GameObject pawnAttackParticle;
 
     private Camera mainCam;
     private Dictionary<ChessType, IAttackStrategy> attackStrategies;

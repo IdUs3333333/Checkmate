@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour
 
     public List<GameObject> reinforcements;
 
-    [HideInInspector] public float[] attackRange = { 0.5f, 2.25f, 1.25f, 2.5f, 3.75f, 1f };
+    [HideInInspector] public float[] attackRange = { 2f, 4.5f, 2.5f, 5f, 7.5f, 2f };
 
     public void AddReinforces(PlayerReinforces reinforcement)
     {
