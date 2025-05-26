@@ -28,7 +28,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Attack Check");
         if (!isAttacking && attackStrategies.TryGetValue(player.type, out var strategy))
         {
             StartCoroutine(AttackCoroutine(strategy));

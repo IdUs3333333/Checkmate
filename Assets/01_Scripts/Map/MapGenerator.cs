@@ -35,7 +35,12 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap(MapType type)
     {
-        Debug.Log("Generating Map");
+        if (currentMap != null)
+        {
+            Destroy(currentMap.gameObject);
+        }
+
+        Debug.Log("<color=#777777>Generating Map...</color>");
         int n = Random.Range(0, maps[type].Count);
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 

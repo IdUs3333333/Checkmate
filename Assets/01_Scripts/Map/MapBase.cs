@@ -13,24 +13,33 @@ public class MapBase : MonoBehaviour
     private int maxEnemyCount;
     public int currentEnemyCount;
 
+    private bool spawnEnemyTrigger = true;
+
     private void Awake()
     {
         maxEnemyCount = enemySpawnpoints.Length;
+        maxTurnCount = 1;
 
         foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
         {
             enemySpawnpoints.Append(point);
+            maxTurnCount = point.enemy.Count;
         }
     }
 
     public void SpawnEnemies(float delaySecond)
     {
-        if(currentTurnCount < maxTurnCount)
+        Debug.Log($"<color=#7777FF>currentTurnCount</color> : <color=#85B6FF>{currentTurnCount}</color>");
+        Debug.Log($"<color=#7777FF>maxTurnCount</color> : <color=#85B6FF>{maxTurnCount}</color>");
+
+        if (currentTurnCount < maxTurnCount && spawnEnemyTrigger)
         {
             Invoke("InvokedSpawnEnemies", delaySecond);
         }
-        else
+        else if(currentTurnCount >= maxTurnCount)
         {
+            spawnEnemyTrigger = false;
+            currentTurnCount = 0;
             GameManager.Instance.RoomCleared();
         }
     }

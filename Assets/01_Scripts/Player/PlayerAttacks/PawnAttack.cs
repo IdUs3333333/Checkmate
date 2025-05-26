@@ -5,12 +5,11 @@ public class PawnAttack : IAttackStrategy
 {
     public IEnumerator ExecuteAttack(Player player, Transform attackTransform, Camera maincam)
     {
-        Debug.Log("Pawn Attack!");
         float attackRange = player.stats.attackRange[(int)player.type];
         float angleThreshold = 45f;
 
-        Vector2 attackDir = (maincam.ScreenToWorldPoint(Input.mousePosition) - player.transform.position).normalized;
-        Vector2 attackPos = (Vector2)player.transform.position + attackDir * attackRange * 3f;
+        Vector2 attackDir = (maincam.ScreenToWorldPoint(Input.mousePosition) - player.transform.position);
+        Vector2 attackPos = (Vector2)player.transform.position + attackDir.normalized * attackRange * 2f;
 
         GameObject particle = GameObject.Instantiate(player.attack.pawnAttackParticle, attackPos, Quaternion.identity);
         GameObject.Destroy(particle, 1f);

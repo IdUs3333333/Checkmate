@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1410793639998970299}
-  pawnAttackParticle: {fileID: 0}
+  pawnAttackParticle: {fileID: 65251376764205949, guid: 25ab0c1ed30c11849a6be216b1cfb8b6, type: 3}
 --- !u!58 &3544957244286749457
 CircleCollider2D:
   m_ObjectHideFlags: 0
