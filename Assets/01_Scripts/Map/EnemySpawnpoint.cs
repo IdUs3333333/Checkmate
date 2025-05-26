@@ -8,6 +8,10 @@ public class EnemySpawnpoint : MonoBehaviour
 
     public void EnemySpawn(int turn)
     {
+        if (enemy.Count < turn)
+        {
+            return;
+        }
         Instantiate(enemy[Mathf.Clamp(turn - 1, 0, turn - 1)], transform.position, Quaternion.identity);
     }
 }

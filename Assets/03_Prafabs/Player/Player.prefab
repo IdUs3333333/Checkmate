@@ -96,6 +96,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1919202096896559868}
+  - component: {fileID: 4987318966947290947}
+  - component: {fileID: 3544957244286749457}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -118,6 +120,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6395418706630547722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4987318966947290947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581741240462778354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a0dcf1deccac841a5c27559fe4d06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1410793639998970299}
+  pawnAttackParticle: {fileID: 65251376764205949, guid: 25ab0c1ed30c11849a6be216b1cfb8b6, type: 3}
+--- !u!58 &3544957244286749457
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581741240462778354}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.5
 --- !u!1 &5572038898246785093
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +294,6 @@ GameObject:
   - component: {fileID: 1382276166895459839}
   - component: {fileID: 1677285868897476814}
   - component: {fileID: 1659359061714511996}
-  - component: {fileID: 749474463268008209}
   - component: {fileID: 4927989539439905010}
   - component: {fileID: 8833345438877875816}
   m_Layer: 0
@@ -287,7 +338,8 @@ MonoBehaviour:
   movement: {fileID: 1677285868897476814}
   visual: {fileID: 4195427426538425131}
   hp: {fileID: 0}
-  attack: {fileID: 749474463268008209}
+  attack: {fileID: 4987318966947290947}
+  type: 0
   knockBackPower: 600
   knockBackTime: 0.125
 --- !u!114 &1382276166895459839
@@ -340,18 +392,6 @@ MonoBehaviour:
   - 5
   - 7.5
   - 1
---- !u!114 &749474463268008209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9106686734148681248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a0dcf1deccac841a5c27559fe4d06d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &4927989539439905010
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

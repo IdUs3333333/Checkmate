@@ -22,6 +22,11 @@ public class PlayerVisual : MonoBehaviour
         input.OnMove += MoveVisual;
     }
 
+    public void ChangeVisual(ChessType type)
+    {
+        sprite.sprite = chessSprite[type];
+    }
+
     private void MoveVisual(Vector2 movement)
     {
         if(isMoving == false && movement.magnitude > 0)

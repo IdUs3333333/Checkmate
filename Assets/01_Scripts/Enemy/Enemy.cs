@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public float maxHP;
     public float currentHP;
 
+    private bool dieTrigger = false;
+
     private void Awake()
     {
         currentHP = maxHP;
@@ -46,10 +48,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(currentHP <= 0)
+        if(currentHP <= 0 && !dieTrigger)
         {
             currentMap.OnEnemyDeath();
             Destroy(gameObject);
+            dieTrigger = !dieTrigger;
+            return;
         }
 
         switch(state)

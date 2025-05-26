@@ -24,13 +24,13 @@ public class Portal : MonoBehaviour
     public void Init()
     {
         portalType = (MapType)Random.Range(0, 4);
-        portalIcon.sprite = roomIcons[(int)portalType].sprite;
+        // portalIcon.sprite = roomIcons[(int)portalType].sprite;
     }
 
     public void Init(MapType type)
     {
         portalType = type;
-        portalIcon.sprite = roomIcons[(int)portalType].sprite;
+        // portalIcon.sprite = roomIcons[(int)portalType].sprite;
     }
 
     private void OnInteract()
@@ -40,10 +40,10 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        float dist = (player.transform.position - transform.position).magnitude;
-        interactionButton.SetActive(dist <= interactDist);
+        bool isNear = player.transform.position.IsNear(transform.position, interactDist);
+        interactionButton.SetActive(isNear);
 
-        if(isInteractRequired && interactionButton.activeSelf)
+        if(isInteractRequired && interactionButton.activeSelf && isNear)
         {
             isInteractRequired = false;
             Interact();
@@ -53,5 +53,6 @@ public class Portal : MonoBehaviour
     public void Interact()
     {
         GameManager.Instance.PortalInteract(portalType);
+        Destroy(gameObject);
     }
 }

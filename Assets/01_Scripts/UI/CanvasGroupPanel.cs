@@ -3,17 +3,23 @@ using UnityEngine.UI;
 
 public class CanvasGroupPanel : MonoBehaviour
 {
+    [SerializeField] private Button resumeButton;
     [SerializeField] private Button replayButton;
     [SerializeField] private Button returnButton;
 
     private CanvasGroup canvas;
 
+    public bool isOpened = false;
+
     private void Awake()
     {
         canvas = GetComponent<CanvasGroup>();
 
-        replayButton.onClick.AddListener(Replay);
-        returnButton.onClick.AddListener(Return);
+        resumeButton?.onClick.AddListener(Resume);
+        replayButton?.onClick.AddListener(Replay);
+        returnButton?.onClick.AddListener(Return);
+
+        Active(false);
     }
 
     public void Open()
@@ -23,6 +29,12 @@ public class CanvasGroupPanel : MonoBehaviour
 
     public void Close()
     {
+        Active(false);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
         Active(false);
     }
 
@@ -38,6 +50,8 @@ public class CanvasGroupPanel : MonoBehaviour
 
     private void Active(bool value = true)
     {
+        isOpened = value;
+
         canvas.alpha = value ? 1 : 0;
         canvas.interactable = value;
         canvas.blocksRaycasts = value;

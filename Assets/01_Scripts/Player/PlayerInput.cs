@@ -37,7 +37,7 @@ public class PlayerInput : MonoBehaviour
         {
             OnInteract?.Invoke();
         }
-        if(Input.GetKeyDown(KE.attack))
+        if(Input.GetKey(KE.attack))
         {
             OnAttack?.Invoke();
         }

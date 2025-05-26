@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Components")]
     public PlayerStats stats;
     public PlayerInput input;
     public PlayerMovement movement;
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     public PlayerAttack attack;
 
     private Rigidbody2D rb;
+
+    public ChessType type;
 
     [SerializeField] private float knockBackPower = 600f;
     [SerializeField] private float knockBackTime = 0.125f;
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         visual = GetComponentInChildren<PlayerVisual>();
         hp = FindFirstObjectByType<PlayerHP>();
-        attack = GetComponent<PlayerAttack>();
+        attack = GetComponentInChildren<PlayerAttack>();
 
         rb = GetComponent<Rigidbody2D>();
 

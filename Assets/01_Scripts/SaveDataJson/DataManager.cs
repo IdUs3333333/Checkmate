@@ -47,7 +47,6 @@ namespace SaveSystem.Manager
                 return difficulty switch
                 {
                     Difficulty.Easy => gameData.easy,
-                    Difficulty.Normal => gameData.normal,
                     Difficulty.Hard => gameData.hard,
                     _ => null,
                 };
@@ -58,9 +57,6 @@ namespace SaveSystem.Manager
                 {
                     case Difficulty.Easy:
                         gameData.easy = value;
-                        break;
-                    case Difficulty.Normal:
-                        gameData.normal = value;
                         break;
                     case Difficulty.Hard:
                         gameData.hard = value;
