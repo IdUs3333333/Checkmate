@@ -6,7 +6,7 @@ public class Portal : MonoBehaviour
 {
     [SerializeField] private GameObject interactionButton;
     [SerializeField] private SpriteRenderer portalIcon;
-    [SerializeField] private List<Image> roomIcons;
+    [SerializeField] private List<Sprite> roomIcons;
 
     private Player player;
     public MapType portalType;
@@ -24,13 +24,13 @@ public class Portal : MonoBehaviour
     public void Init()
     {
         portalType = (MapType)Random.Range(0, 4);
-        // portalIcon.sprite = roomIcons[(int)portalType].sprite;
+        portalIcon.sprite = roomIcons[(int)portalType];
     }
 
     public void Init(MapType type)
     {
         portalType = type;
-        // portalIcon.sprite = roomIcons[(int)portalType].sprite;
+        portalIcon.sprite = roomIcons[(int)portalType];
     }
 
     private void OnInteract()
