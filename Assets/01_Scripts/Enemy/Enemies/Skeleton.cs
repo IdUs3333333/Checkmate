@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Slime : Enemy
+public class Skeleton : Enemy
 {
     [SerializeField] private Animator animator;
     [SerializeField] private EnemyStatsSO stats;
@@ -9,7 +9,6 @@ public class Slime : Enemy
     private EnemyState currentState;
     private FSM fsm;
     private Player player;
-    private Slime self;
     private SlimeAttack attack;
 
     private Vector2 moveDir = Vector2.zero;
@@ -18,7 +17,6 @@ public class Slime : Enemy
     {
         currentState = EnemyState.Idle;
         player = GameManager.Instance.player;
-        self = gameObject.GetComponent<Slime>();
         attack = GetComponent<SlimeAttack>();
 
         fsm = new FSM(new IdleState(this));
@@ -51,32 +49,14 @@ public class Slime : Enemy
 
     private bool CanDetectPlayer()
     {
-        Vector2 dir = ((Vector2)player.transform.position - (Vector2)self.transform.position).normalized;
-        RaycastHit2D hit = Physics2D.Raycast(self.transform.position, dir, stats.detectRange, 1 << LayerMask.NameToLayer("EnemyDetectLayer"));
-
-        Debug.DrawRay(self.transform.position, dir * stats.detectRange, Color.cyan);
-
-        if (hit.collider == null) return false;
-
-        if (hit.collider.CompareTag("Player"))
-        {
-            return true;
-        }
-        return false;
+        float dist = (player.transform.position - transform.position).magnitude;
+        return (dist <= stats.detectRange);
     }
 
     private bool CanAttackPlayer()
     {
-        Vector2 dir = ((Vector2)player.transform.position - (Vector2)self.transform.position).normalized;
-        RaycastHit2D hit = Physics2D.Raycast(self.transform.position, dir, stats.attackRange, 1 << LayerMask.NameToLayer("EnemyDetectLayer"));
-
-        if (hit.collider == null) return false;
-
-        if (hit.collider.CompareTag("Player"))
-        {
-            return true;
-        }
-        return false;
+        float dist = (player.transform.position - transform.position).magnitude;
+        return (dist <= stats.attackRange);
     }
 
     private IEnumerator PatrolCoroutine()
@@ -86,7 +66,7 @@ public class Slime : Enemy
 
         while (true)
         {
-            if(CanDetectPlayer())
+            if (CanDetectPlayer())
             {
                 ChangeState(EnemyState.Chase);
                 animator.SetBool("isMoving", false);
@@ -94,9 +74,9 @@ public class Slime : Enemy
             }
 
             transform.position += (Vector3)(moveDir * stats.moveSpeed * Time.deltaTime);
-            
+
             timer += Time.deltaTime;
-            if(timer >= 3f)
+            if (timer >= 3f)
             {
                 animator.SetBool("isMoving", true);
                 moveDir = new Vector2(Random.Range(-1, 1f), Random.Range(-1, 1f)).normalized;
@@ -120,14 +100,14 @@ public class Slime : Enemy
                 yield break;
             }
 
-            if(CanAttackPlayer())
+            if (CanAttackPlayer())
             {
                 ChangeState(EnemyState.Attack);
                 animator.SetBool("isMoving", false);
                 yield break;
             }
 
-            moveDir = (player.transform.position - self.transform.position).normalized;
+            moveDir = (player.transform.position - transform.position).normalized;
             transform.position += (Vector3)(moveDir * stats.moveSpeed * Time.deltaTime);
 
             yield return null;
@@ -138,7 +118,7 @@ public class Slime : Enemy
     {
         float elapsed = 0f;
         attack.Active(true);
-        moveDir = (player.transform.position - self.transform.position).normalized;
+        moveDir = (player.transform.position - transform.position).normalized;
 
         while (elapsed < stats.attackDelay)
         {
@@ -166,15 +146,5 @@ public class Slime : Enemy
     private void Die()
     {
 
-    }
-
-    private void OnDrawGizmos()
-    {
-        Color baseColor = Gizmos.color;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, stats.detectRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
-        Gizmos.color = baseColor;
     }
 }
