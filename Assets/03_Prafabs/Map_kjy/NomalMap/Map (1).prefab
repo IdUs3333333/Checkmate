@@ -10658,7 +10658,7 @@ MonoBehaviour:
   - {fileID: 6503225413317898398}
   playerSpawnpoint: {fileID: 7045927868302064063}
   portalSpawnpoint: {fileID: 8916285047950917779}
-  maxTurnCount: 3
+  maxTurnCount: 2
   currentTurnCount: 0
   currentEnemyCount: 0
 --- !u!1 &6449905990235276367
