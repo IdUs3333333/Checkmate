@@ -2,29 +2,29 @@ using UnityEngine;
 
 public class Box_kjy : MonoBehaviour
 {
-    [SerializeField] private int boxDieCount; //몇번 맞아야 부서지는지
+    [SerializeField] private float boxHp; //몇번 맞아야 부서지는지
 
-    private Rigidbody2D rigid;
-    private GameObject thisBox;
-
-    private int boxHitCount = 0; // 몇번 맞았는지
+    private float currentBoxHp = 0; // 몇번 맞았는지
+    private bool dieTrigger = false;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        thisBox = this.gameObject;
+        currentBoxHp = boxHp;
     }
 
-    //공격을 맞을 때만 파괴되도록 코드 수정 요망
-    private void OnCollisionEnter2D(Collision2D collision)//충돌 체크
+    public void Damage()
     {
-        if(collision.collider.tag == "EnemyAttacks"|| collision.collider.tag == "")
-        Debug.Log("충돌함");
-        boxHitCount++;//충돌 했음 증가
-        if(boxHitCount >= boxDieCount)//파괴 조건 만족 체크
+        currentBoxHp = Mathf.Clamp(currentBoxHp - 1, 0f, boxHp);
+    }
+
+    private void Update()
+    {
+        if (currentBoxHp <= 0 && !dieTrigger)
         {
-            Debug.Log("파괴됨");
-            Destroy(thisBox);//만족했음 박스 파괴
+            dieTrigger = !dieTrigger;
+            Destroy(this.gameObject);
+            return;
         }
     }
+
 }
