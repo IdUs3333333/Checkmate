@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroupPanel gameOverPanel;
     public CanvasGroupPanel gameClearPanel;
     public CanvasGroupPanel gamePausePanel;
+    public CurrentInfo info;
 
     public Difficulty difficulty;
 
@@ -31,6 +32,11 @@ public class GameManager : MonoBehaviour
 
         player = FindFirstObjectByType<Player>();
         gameOverPanel.Close();
+
+        gameScore = 0;
+        clearedRoomCount = 0;
+        currentFloor = 1;
+
         Time.timeScale = 1;
     }
 
@@ -49,8 +55,16 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(bool value = true)
     {
-        if (value) gamePausePanel.Open();
-        else gamePausePanel.Close();
+        if (value)
+        {
+            Time.timeScale = 0;
+            gamePausePanel.Open();
+        }
+        else
+        {
+            Time.timeScale = 1;
+            gamePausePanel.Close();
+        }
     }
 
     public void GameOver()
@@ -62,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void RoomCleared()
     {
         clearedRoomCount++;
+        currentFloor = clearedRoomCount + 1;
         MapGenerator.Instance.OnRoomClear();
     }
 
@@ -69,11 +84,5 @@ public class GameManager : MonoBehaviour
     {
         gameClearPanel.Open();
         Time.timeScale = 0;
-    }
-
-    public void PortalInteract(MapType type)
-    {
-        Debug.Log($"<color=#FFFF77>mapType</color> : <color=#FFFF77>{type}</color>");
-        MapGenerator.Instance.GenerateMap(type);
     }
 }

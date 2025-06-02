@@ -11,10 +11,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private SerializedDictionary<int, List<MapType>> easyMapList = new SerializedDictionary<int, List<MapType>>();
     [SerializeField] private SerializedDictionary<int, List<MapType>> hardMapList = new SerializedDictionary<int, List<MapType>>();
 
-    private Dictionary<int, List<MapType>> currentMapList;
-
     public MapBase currentMap;
     public Portal mapPortal;
+
+    public MapType currentMapType = MapType.StartRoom;
 
     private void Awake()
     {
@@ -41,6 +41,10 @@ public class MapGenerator : MonoBehaviour
         }
 
         Debug.Log("<color=#777777>Generating Map...</color>");
+
+        currentMapType = type;
+        GameManager.Instance.info.SetInfo();
+
         int n = Random.Range(0, maps[type].Count);
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
 
@@ -75,7 +79,12 @@ public class MapGenerator : MonoBehaviour
                 else
                 {
                     MapType nextMap1 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
-                    MapType nextMap2 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
+                    MapType nextMap2;
+                    do
+                    {
+                        nextMap2 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
+                    }
+                    while (nextMap1 == nextMap2);
 
                     SpawnPortal(nextMap1, -1.5f);
                     SpawnPortal(nextMap2, 1.5f);
@@ -98,7 +107,12 @@ public class MapGenerator : MonoBehaviour
                 else
                 {
                     MapType nextMap1 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
-                    MapType nextMap2 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
+                    MapType nextMap2;
+                    do
+                    {
+                        nextMap2 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
+                    }
+                    while (nextMap1 == nextMap2);
 
                     SpawnPortal(nextMap1, -1.5f);
                     SpawnPortal(nextMap2, 1.5f);
@@ -112,6 +126,6 @@ public class MapGenerator : MonoBehaviour
     {
         Portal portal = Instantiate(mapPortal, currentMap.portalSpawnpoint.position
             + new Vector3(offset, 0, 0), Quaternion.identity);
-        portal.Init();
+        portal.Init(type);
     }
 }

@@ -11,7 +11,8 @@ public class Portal : MonoBehaviour
     private Player player;
     public MapType portalType;
 
-    public float interactDist = 1.5f;
+    public bool isNear = false;
+    public float interactDist = 1f;
     private bool isInteractRequired = false;
 
     private void Start()
@@ -40,19 +41,27 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        bool isNear = player.transform.position.IsNear(transform.position, interactDist);
+        isNear = player.transform.position.IsNear(transform.position, interactDist);
         interactionButton.SetActive(isNear);
 
-        if(isInteractRequired && interactionButton.activeSelf && isNear)
+        if(isInteractRequired)
         {
-            isInteractRequired = false;
-            Interact();
+            if(isNear)
+            {
+                isInteractRequired = false;
+                Interact();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
     public void Interact()
     {
-        GameManager.Instance.PortalInteract(portalType);
+        Debug.Log($"<color=#FFFF77>mapType</color> : <color=#FFFF77>{portalType}</color>");
+        MapGenerator.Instance.GenerateMap(portalType);
         Destroy(gameObject);
     }
 }

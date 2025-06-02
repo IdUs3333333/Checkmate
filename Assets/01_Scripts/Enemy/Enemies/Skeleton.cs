@@ -5,11 +5,12 @@ public class Skeleton : Enemy
 {
     [SerializeField] private Animator animator;
     [SerializeField] private EnemyStatsSO stats;
+    [SerializeField] private GameObject bone;
 
     private EnemyState currentState;
     private FSM fsm;
     private Player player;
-    private SlimeAttack attack;
+    private Skeleton self;
 
     private Vector2 moveDir = Vector2.zero;
 
@@ -17,7 +18,7 @@ public class Skeleton : Enemy
     {
         currentState = EnemyState.Idle;
         player = GameManager.Instance.player;
-        attack = GetComponent<SlimeAttack>();
+        self = gameObject.GetComponent<Skeleton>();
 
         fsm = new FSM(new IdleState(this));
         StartCoroutine(PatrolCoroutine());
@@ -31,32 +32,54 @@ public class Skeleton : Enemy
             case EnemyState.Idle:
                 fsm.ChangeState(new IdleState(this));
                 StartCoroutine(PatrolCoroutine());
+                base.state = EnemyState.Idle;
                 break;
             case EnemyState.Chase:
                 fsm.ChangeState(new ChaseState(this));
                 StartCoroutine(ChaseCoroutine());
+                base.state = EnemyState.Chase;
                 break;
             case EnemyState.Attack:
                 fsm.ChangeState(new AttackState(this));
                 StartCoroutine(AttackCoroutine());
+                base.state = EnemyState.Attack;
                 break;
             case EnemyState.Die:
                 fsm.ChangeState(new DieState(this));
                 Die();
+                base.state = EnemyState.Die;
                 break;
         }
     }
 
     private bool CanDetectPlayer()
     {
-        float dist = (player.transform.position - transform.position).magnitude;
-        return (dist <= stats.detectRange);
+        Vector2 dir = ((Vector2)player.transform.position - (Vector2)self.transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(self.transform.position, dir, stats.detectRange, 1 << LayerMask.NameToLayer("EnemyDetectLayer"));
+
+        Debug.DrawRay(self.transform.position, dir * stats.detectRange, Color.cyan);
+
+        if (hit.collider == null) return false;
+
+        if (hit.collider.CompareTag("Player"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private bool CanAttackPlayer()
     {
-        float dist = (player.transform.position - transform.position).magnitude;
-        return (dist <= stats.attackRange);
+        Vector2 dir = ((Vector2)player.transform.position - (Vector2)self.transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(self.transform.position, dir, stats.attackRange, 1 << LayerMask.NameToLayer("EnemyDetectLayer"));
+
+        if (hit.collider == null) return false;
+
+        if (hit.collider.CompareTag("Player"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator PatrolCoroutine()
@@ -107,7 +130,7 @@ public class Skeleton : Enemy
                 yield break;
             }
 
-            moveDir = (player.transform.position - transform.position).normalized;
+            moveDir = (player.transform.position - self.transform.position).normalized;
             transform.position += (Vector3)(moveDir * stats.moveSpeed * Time.deltaTime);
 
             yield return null;
@@ -116,35 +139,29 @@ public class Skeleton : Enemy
 
     private IEnumerator AttackCoroutine()
     {
-        float elapsed = 0f;
-        attack.Active(true);
-        moveDir = (player.transform.position - transform.position).normalized;
-
-        while (elapsed < stats.attackDelay)
-        {
-            attack.SetGauge(elapsed / stats.attackDelay);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        float dashTime = 0.5f;
-        float dashSpeed = stats.moveSpeed * 3;
-        attack.Active(false);
-        animator.SetTrigger("isDash");
-
-        while (dashTime > 0f)
-        {
-            transform.position += (Vector3)(moveDir * dashSpeed * (Time.deltaTime));
-            dashTime -= Time.deltaTime;
-            yield return null;
-        }
-
+        animator.SetTrigger("doAttack");
         yield return new WaitForSeconds(0.25f);
+
+        Vector2 attackDir = (player.transform.position - self.transform.position).normalized;
+        SkeletonBone iBone = Instantiate(bone, transform.position, Quaternion.identity).GetComponent<SkeletonBone>();
+        iBone.Shoot(attackDir, 2.5f, stats.attackRange);
+
+        yield return new WaitForSeconds(2f);
         ChangeState(EnemyState.Chase);
     }
 
     private void Die()
     {
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Color baseColor = Gizmos.color;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stats.detectRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
+        Gizmos.color = baseColor;
     }
 }
