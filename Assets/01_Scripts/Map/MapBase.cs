@@ -7,6 +7,8 @@ public class MapBase : MonoBehaviour
     public Transform playerSpawnpoint;
     public Transform portalSpawnpoint;
 
+    public MapType type = MapType.StartRoom;
+
     public int maxTurnCount = 1;
     public int currentTurnCount = 0;
 
@@ -15,6 +17,11 @@ public class MapBase : MonoBehaviour
 
     private bool spawnEnemyTrigger = true;
 
+    public void Init(MapType _type)
+    {
+        type = _type;
+    }
+
     private void Awake()
     {
         Debug.Log($"<color=#5283CC>Current Floor : {GameManager.Instance.currentFloor}F</color>");
@@ -22,10 +29,53 @@ public class MapBase : MonoBehaviour
         maxEnemyCount = enemySpawnpoints.Length;
         maxTurnCount = 1;
 
-        foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+        switch(type)
         {
-            enemySpawnpoints.Append(point);
-            maxTurnCount = point.enemy.Count;
+            case MapType.BasicCombat:
+                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+                {
+                    enemySpawnpoints.Append(point);
+                    maxTurnCount = point.enemy.Count;
+                }
+                break;
+
+            case MapType.BossCombat:
+                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+                {
+                    enemySpawnpoints.Append(point);
+                    maxTurnCount = point.enemy.Count;
+                }
+                break;
+
+            case MapType.EliteCombat:
+                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+                {
+                    enemySpawnpoints.Append(point);
+                    maxTurnCount = point.enemy.Count;
+                }
+                break;
+
+            case MapType.ExtendedCombat:
+                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
+                {
+                    enemySpawnpoints.Append(point);
+                    maxTurnCount = point.enemy.Count;
+                }
+                break;
+
+            case MapType.Mystery:
+                GameManager.Instance.GenerateEvent();
+                GameManager.Instance.RoomCleared(MapType.Mystery);
+                break;
+
+            case MapType.Reward:
+                GameManager.Instance.GenerateReward();
+                GameManager.Instance.RoomCleared(MapType.Reward);
+                break;
+
+            case MapType.StartRoom:
+                GameManager.Instance.RoomCleared(MapType.StartRoom);
+                break;
         }
     }
 
@@ -46,7 +96,7 @@ public class MapBase : MonoBehaviour
 
             spawnEnemyTrigger = false;
             currentTurnCount = 0;
-            GameManager.Instance.RoomCleared();
+            GameManager.Instance.RoomCleared(type);
         }
     }
 

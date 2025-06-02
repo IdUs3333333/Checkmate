@@ -67,17 +67,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GenerateEvent()
+    {
+
+    }
+
+    public void GenerateReward()
+    {
+
+    }
+
     public void GameOver()
     {
         gameOverPanel.Open();
         Time.timeScale = 0;
     }
 
-    public void RoomCleared()
+    public void RoomCleared(MapType type)
     {
-        clearedRoomCount++;
-        currentFloor = clearedRoomCount + 1;
-        MapGenerator.Instance.OnRoomClear();
+        if(type == MapType.StartRoom)
+        {
+            clearedRoomCount++;
+            currentFloor = clearedRoomCount + 1;
+            MapGenerator.Instance.OnRoomClear(true);
+        }
+        else
+        {
+            clearedRoomCount++;
+            currentFloor = clearedRoomCount + 1;
+            MapGenerator.Instance.OnRoomClear();
+        }
     }
 
     public void GameClear()

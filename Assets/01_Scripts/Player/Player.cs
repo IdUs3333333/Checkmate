@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockBackPower = 600f;
     [SerializeField] private float knockBackTime = 0.125f;
 
+    public Portal currentPortal;
+
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -29,9 +31,19 @@ public class Player : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
+        input.OnInteract += Interact;
+
         input.OnAttack += Attack;
         input.OnMainSkill += MainSkill;
         input.OnSubSkill += SubSkill;
+    }
+
+    private void Interact()
+    {
+        if(currentPortal != null)
+        {
+            currentPortal.Interact();
+        }
     }
 
     private void Attack()
@@ -53,7 +65,6 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyAttacks"))
         {
-            Debug.Log($"Hit by {collision.gameObject.name}");
             Vector2 hitDir = (gameObject.transform.position - collision.transform.position).normalized;
             Hit(hitDir);
         }

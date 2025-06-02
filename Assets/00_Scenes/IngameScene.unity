@@ -649,6 +649,7 @@ MonoBehaviour:
   currentMap: {fileID: 0}
   mapPortal: {fileID: 8623521692502202128, guid: a4d259e3c444d744ebc56f6faea13dea, type: 3}
   currentMapType: 6
+  currentDifficulty: 0
 --- !u!1 &245853973
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,7 +3903,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1000, y: -25}
-  m_SizeDelta: {x: 78.51, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1488010226
 MonoBehaviour:

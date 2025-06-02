@@ -15,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     public Portal mapPortal;
 
     public MapType currentMapType = MapType.StartRoom;
+    public Difficulty currentDifficulty = Difficulty.Easy;
 
     private void Awake()
     {
@@ -47,85 +48,95 @@ public class MapGenerator : MonoBehaviour
 
         int n = Random.Range(0, maps[type].Count);
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
-
+        currentMap.type = currentMapType;
         GameManager.Instance.player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
         currentMap.SpawnEnemies(0.5f);
     }
 
-    public void OnRoomClear()
+    public void OnRoomClear(bool isStart = false)
     {
-        int floor = GameManager.Instance.currentFloor;
-        GeneratePortal(floor);
+        GeneratePortal(GameManager.Instance.currentFloor, isStart);
 
     }
 
-    public void GeneratePortal(int floor)
+    public void GeneratePortal(int floor, bool isStart)
     {
-        switch(GameManager.Instance.difficulty)
+        if (isStart)
         {
-            case Difficulty.Easy:
-                if (floor == 10)
-                {
-                    GameManager.Instance.GameClear();
-                    return;
-                }
-                
-                List<MapType> easyNextMaps = easyMapList[floor];
-                if(easyNextMaps.Count == 1)
-                {
-                    MapType nextMap = easyNextMaps[0];
-                    SpawnPortal(nextMap);
-                }
-                else
-                {
-                    MapType nextMap1 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
-                    MapType nextMap2;
-                    do
+            MapType nextMap1 = easyMapList[floor][Random.Range(0, easyMapList[floor].Count)];
+            MapType nextMap2 = hardMapList[floor][Random.Range(0, hardMapList[floor].Count)];
+
+            SpawnPortal(nextMap1, Difficulty.Easy, -1.5f, true);
+            SpawnPortal(nextMap2, Difficulty.Hard, 1.5f, true);
+        }
+        else
+        {
+            switch (GameManager.Instance.difficulty)
+            {
+                case Difficulty.Easy:
+                    if (floor == 10)
                     {
-                        nextMap2 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
+                        GameManager.Instance.GameClear();
+                        return;
                     }
-                    while (nextMap1 == nextMap2);
 
-                    SpawnPortal(nextMap1, -1.5f);
-                    SpawnPortal(nextMap2, 1.5f);
-                }
-
-                break;
-            case Difficulty.Hard:
-                if (floor == 20)
-                {
-                    GameManager.Instance.GameClear();
-                    return;
-                }
-
-                List<MapType> hardNextMaps = hardMapList[floor];
-                if (hardNextMaps.Count == 1)
-                {
-                    MapType nextMap = hardNextMaps[0];
-                    SpawnPortal(nextMap);
-                }
-                else
-                {
-                    MapType nextMap1 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
-                    MapType nextMap2;
-                    do
+                    List<MapType> easyNextMaps = easyMapList[floor];
+                    if (easyNextMaps.Count == 1)
                     {
-                        nextMap2 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
+                        MapType nextMap = easyNextMaps[0];
+                        SpawnPortal(nextMap, Difficulty.Easy);
                     }
-                    while (nextMap1 == nextMap2);
+                    else
+                    {
+                        MapType nextMap1 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
+                        MapType nextMap2;
+                        do
+                        {
+                            nextMap2 = easyNextMaps[Random.Range(0, easyNextMaps.Count)];
+                        }
+                        while (nextMap1 == nextMap2);
 
-                    SpawnPortal(nextMap1, -1.5f);
-                    SpawnPortal(nextMap2, 1.5f);
-                }
+                        SpawnPortal(nextMap1, Difficulty.Easy, -1.5f);
+                        SpawnPortal(nextMap2, Difficulty.Easy, 1.5f);
+                    }
 
-                break;
+                    break;
+                case Difficulty.Hard:
+                    if (floor == 20)
+                    {
+                        GameManager.Instance.GameClear();
+                        return;
+                    }
+
+                    List<MapType> hardNextMaps = hardMapList[floor];
+                    if (hardNextMaps.Count == 1)
+                    {
+                        MapType nextMap = hardNextMaps[0];
+                        SpawnPortal(nextMap, Difficulty.Hard);
+                    }
+                    else
+                    {
+                        MapType nextMap1 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
+                        MapType nextMap2;
+                        do
+                        {
+                            nextMap2 = hardNextMaps[Random.Range(0, hardNextMaps.Count)];
+                        }
+                        while (nextMap1 == nextMap2);
+
+                        SpawnPortal(nextMap1, Difficulty.Hard, -1.5f);
+                        SpawnPortal(nextMap2, Difficulty.Hard, 1.5f);
+                    }
+
+                    break;
+            }
         }
     }
 
-    public void SpawnPortal(MapType type, float offset = 0f)
+    public void SpawnPortal(MapType type, Difficulty difficulty, float offset = 0f, bool isStart = false)
     {
         Portal portal = Instantiate(mapPortal, currentMap.portalSpawnpoint.position
             + new Vector3(offset, 0, 0), Quaternion.identity);
-        portal.Init(type);
+        portal.Init(type, difficulty, isStart);
     }
 }
