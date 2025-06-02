@@ -17,6 +17,8 @@ public class MapBase : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log($"<color=#5283CC>Current Floor : {GameManager.Instance.currentFloor}F</color>");
+
         maxEnemyCount = enemySpawnpoints.Length;
         maxTurnCount = 1;
 
@@ -29,15 +31,19 @@ public class MapBase : MonoBehaviour
 
     public void SpawnEnemies(float delaySecond)
     {
-        Debug.Log($"<color=#7777FF>currentTurnCount</color> : <color=#85B6FF>{currentTurnCount}</color>");
-        Debug.Log($"<color=#7777FF>maxTurnCount</color> : <color=#85B6FF>{maxTurnCount}</color>");
 
         if (currentTurnCount < maxTurnCount && spawnEnemyTrigger)
         {
             Invoke("InvokedSpawnEnemies", delaySecond);
+
+            Debug.Log($"<color=#7777FF>currentTurnCount</color> : <color=#85B6FF>{currentTurnCount}</color>");
+            Debug.Log($"<color=#7777FF>maxTurnCount</color> : <color=#85B6FF>{maxTurnCount}</color>");
         }
         else if(currentTurnCount >= maxTurnCount)
         {
+            Debug.Log($"<color=#85B6FF>Room Cleared!</color>" +
+                $"<color=#5283CC> - Next Floor : {GameManager.Instance.currentFloor + 1}F</color>");
+
             spawnEnemyTrigger = false;
             currentTurnCount = 0;
             GameManager.Instance.RoomCleared();

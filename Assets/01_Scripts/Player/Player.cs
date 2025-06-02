@@ -51,8 +51,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyAttacks"))
         {
+            Debug.Log($"Hit by {collision.gameObject.name}");
             Vector2 hitDir = (gameObject.transform.position - collision.transform.position).normalized;
             Hit(hitDir);
         }

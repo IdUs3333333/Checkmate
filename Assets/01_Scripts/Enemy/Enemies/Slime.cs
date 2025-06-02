@@ -33,18 +33,22 @@ public class Slime : Enemy
             case EnemyState.Idle:
                 fsm.ChangeState(new IdleState(this));
                 StartCoroutine(PatrolCoroutine());
+                base.state = EnemyState.Idle;
                 break;
             case EnemyState.Chase:
                 fsm.ChangeState(new ChaseState(this));
                 StartCoroutine(ChaseCoroutine());
+                base.state = EnemyState.Chase;
                 break;
             case EnemyState.Attack:
                 fsm.ChangeState(new AttackState(this));
                 StartCoroutine(AttackCoroutine());
+                base.state = EnemyState.Attack;
                 break;
             case EnemyState.Die:
                 fsm.ChangeState(new DieState(this));
                 Die();
+                base.state = EnemyState.Die;
                 break;
         }
     }

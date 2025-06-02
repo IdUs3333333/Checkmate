@@ -8,7 +8,7 @@ public enum EnemyType
 
 public enum EnemyTribe
 {
-    Slime
+    Slime, Skelleton, Robot
 }
 
 public enum EnemyState
@@ -52,8 +52,8 @@ public class Enemy : MonoBehaviour
         {
             if (currentMap == null) currentMap = FindFirstObjectByType<MapBase>();
             currentMap.OnEnemyDeath();
-            Destroy(gameObject);
             dieTrigger = !dieTrigger;
+            Destroy(gameObject);
             return;
         }
 
