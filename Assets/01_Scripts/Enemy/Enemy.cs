@@ -46,10 +46,15 @@ public class Enemy : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP + value, 0f, maxHP);
     }
 
-    private void Update()
+    protected void Update()
     {
         if(currentHP <= 0 && !dieTrigger)
         {
+            if(TryGetComponent(out EliteSlime entity))
+            {
+                Debug.Log($"Died - {entity.name}");
+            }
+
             if (currentMap == null) currentMap = FindFirstObjectByType<MapBase>();
             currentMap.OnEnemyDeath();
             dieTrigger = !dieTrigger;

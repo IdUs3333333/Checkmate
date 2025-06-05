@@ -13,14 +13,14 @@ public class SlimeAttack : MonoBehaviour
         Active(false);
     }
 
-    public void Active(bool value = true)
+    public void Active(bool value = true, float dist = 2f)
     {
         attackRange.SetActive(value);
 
         if(value)
         {
             Vector2 dir = (GameManager.Instance.player.transform.position - gameObject.transform.position).normalized;
-            attackRange.transform.position = (Vector2)transform.position + dir * 2f;
+            attackRange.transform.position = (Vector2)transform.position + dir * dist;
             attackRange.transform.right = dir;
         }
     }

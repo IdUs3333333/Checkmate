@@ -12,6 +12,9 @@ public class EnemySpawnpoint : MonoBehaviour
         {
             return;
         }
-        Instantiate(enemy[Mathf.Clamp(turn - 1, 0, turn - 1)], transform.position, Quaternion.identity);
+        if(enemy[Mathf.Clamp(turn - 1, 0, turn - 1)] != null)
+        {
+            Instantiate(enemy[Mathf.Clamp(turn - 1, 0, turn - 1)], transform.position, Quaternion.identity);
+        }
     }
 }

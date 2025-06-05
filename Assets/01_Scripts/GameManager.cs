@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<CanvasGroupPanel>();
+        gamePausePanel = GameObject.Find("GamePausePanel").GetComponent<CanvasGroupPanel>();
+        gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
+        info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
+
         player = FindFirstObjectByType<Player>();
         gameOverPanel.Close();
 
@@ -46,6 +51,15 @@ public class GameManager : MonoBehaviour
         {
             PauseGame(!gamePausePanel.isOpened);
         }
+    }
+
+    public void MapReset(MapBase currentMap)
+    {
+        if (info == null) info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
+        info.SetInfo();
+
+        if (player == null) player = FindFirstObjectByType<Player>();
+        player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
     }
 
     public void GetScore(int score)

@@ -17,13 +17,11 @@ public class Portal : MonoBehaviour
     public bool isStartPortal = false;
     public bool isNear = false;
     public float interactDist = 1f;
-    private bool isInteractRequired = false;
 
     private void Start()
     {
         interactionButton.SetActive(false);
         player = GameManager.Instance.player;
-        player.input.OnInteract += OnInteract;
     }
 
     public void Init(bool type = false)
@@ -69,8 +67,6 @@ public class Portal : MonoBehaviour
 
     public void Init(MapType type, Difficulty diff, bool isStart)
     {
-        Debug.Log($"Init({type}, {diff}, {isStart})");
-
         isStartPortal = isStart;
 
         portalType = type;
@@ -81,12 +77,6 @@ public class Portal : MonoBehaviour
         portalText.text = diff == Difficulty.Easy ? "EASY" : "HARD";
         portalText.color = new Color(1, 1, 1, isStart ? 1 : 0);
     }
-
-    private void OnInteract()
-    {
-        isInteractRequired = true;
-    }
-
     private void Update()
     {
         isNear = player.transform.position.IsNear(transform.position, interactDist);

@@ -20,9 +20,10 @@ public class MapBase : MonoBehaviour
     public void Init(MapType _type)
     {
         type = _type;
+        OnGenerate();
     }
 
-    private void Awake()
+    private void OnGenerate()
     {
         Debug.Log($"<color=#5283CC>Current Floor : {GameManager.Instance.currentFloor}F</color>");
 

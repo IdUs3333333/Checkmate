@@ -47,6 +47,15 @@ public class Loading : MonoBehaviour
     {
         LoadingDecoration();
         LoadingTips();
+
+        if (SE.nextScene == SE.loading || SE.nextScene == string.Empty)
+        {
+            Debug.Log("Scene is loading or empty!");
+
+            SE.LoadScene(SE.lobby);
+        }
+
+        StartCoroutine(Load(SE.nextScene));
     }
 
     public void LoadingDecoration()
@@ -62,14 +71,19 @@ public class Loading : MonoBehaviour
         loadingTipText.text = (idx == 0 ? "" : "Tip! ") + loadingTips[idx];
         Invoke("LoadingTips", 3.75f);
     }
-
-    public void StartLoad(string sceneName)
-    {
-        StartCoroutine(Load(sceneName));
-    }
-
     public IEnumerator Load(string nextSceneName)
     {
+        Debug.Log("Loading Start");
+
+        if(nextSceneName == SE.loading && nextSceneName == string.Empty)
+        {
+            Debug.Log("Scene is loading or empty!");
+
+            SE.LoadScene(SE.lobby);
+            yield return null;
+        }
+        Debug.Log("Scene is not loading or empty!");
+
         AsyncOperation async = SceneManager.LoadSceneAsync(nextSceneName);
         async.allowSceneActivation = false;
 
@@ -78,9 +92,10 @@ public class Loading : MonoBehaviour
             // 변화 주기
             loadSlider.value = async.progress;
 
-            if (async.progress >= 0.95f)
+            if (async.progress >= 0.9f)
             {
                 // 마무리
+                Debug.Log("Loading Finished!");
                 async.allowSceneActivation = true;
             }
 

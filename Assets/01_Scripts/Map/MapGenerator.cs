@@ -44,12 +44,13 @@ public class MapGenerator : MonoBehaviour
         Debug.Log("<color=#777777>Generating Map...</color>");
 
         currentMapType = type;
-        GameManager.Instance.info.SetInfo();
 
         int n = Random.Range(0, maps[type].Count);
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
         currentMap.type = currentMapType;
-        GameManager.Instance.player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
+
+        GameManager.Instance.MapReset(currentMap);
+
         currentMap.SpawnEnemies(0.5f);
     }
 

@@ -342,6 +342,7 @@ MonoBehaviour:
   type: 0
   knockBackPower: 600
   knockBackTime: 0.125
+  currentPortal: {fileID: 0}
 --- !u!114 &1382276166895459839
 MonoBehaviour:
   m_ObjectHideFlags: 0
