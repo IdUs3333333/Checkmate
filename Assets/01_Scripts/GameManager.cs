@@ -1,4 +1,7 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +10,9 @@ public class GameManager : MonoBehaviour
     public CanvasGroupPanel gameClearPanel;
     public CanvasGroupPanel gamePausePanel;
     public CurrentInfo info;
+
+    public Image fadePanel;
+    public float fadeDuration = 1f;
 
     public Difficulty difficulty;
 
@@ -30,19 +36,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<CanvasGroupPanel>();
-        gamePausePanel = GameObject.Find("GamePausePanel").GetComponent<CanvasGroupPanel>();
-        gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
-        info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
-
-        player = FindFirstObjectByType<Player>();
-        gameOverPanel.Close();
-
-        gameScore = 0;
-        clearedRoomCount = 0;
-        currentFloor = 1;
+        MapReset();
 
         Time.timeScale = 1;
+        Fade();
     }
 
     private void Update()
@@ -53,13 +50,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MapReset(MapBase currentMap)
+    public void MapReset()
     {
-        if (info == null) info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
+        player = FindFirstObjectByType<Player>();
+
+        gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<CanvasGroupPanel>();
+        gameOverPanel.Close();
+
+        gamePausePanel = GameObject.Find("GamePausePanel").GetComponent<CanvasGroupPanel>();
+        gamePausePanel.Close();
+
+        gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
+        gameClearPanel.Close();
+
+        fadePanel = GameObject.Find("FadePanel").GetComponent<Image>();
+
+        info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
         info.SetInfo();
 
-        if (player == null) player = FindFirstObjectByType<Player>();
-        player.transform.SetPositionAndRotation(currentMap.playerSpawnpoint.position, Quaternion.identity);
+        gameScore = 0;
+        clearedRoomCount = 0;
+        currentFloor = 1;
     }
 
     public void GetScore(int score)
@@ -69,6 +80,11 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(bool value = true)
     {
+        if(gamePausePanel == null)
+        {
+            gamePausePanel = GameObject.Find("GamePausePanel").GetComponent<CanvasGroupPanel>();
+        }
+
         if (value)
         {
             Time.timeScale = 0;
@@ -93,6 +109,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (gameOverPanel == null)
+        {
+            gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<CanvasGroupPanel>();
+        }
+
         gameOverPanel.Open();
         Time.timeScale = 0;
     }
@@ -115,7 +136,35 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
+        if (gameClearPanel == null)
+        {
+            gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
+        }
+
         gameClearPanel.Open();
         Time.timeScale = 0;
+    }
+
+    public void Fade(bool isIn = true)
+    {
+        if (isIn)
+        {
+            StartCoroutine(FadeIn());
+        }
+        else StartCoroutine(FadeOut());
+    }
+
+    private IEnumerator FadeIn()
+    {
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, 1f);
+        yield return fadePanel.DOFade(0f, fadeDuration).SetEase(Ease.InSine).WaitForCompletion();
+    }
+
+    private IEnumerator FadeOut()
+    {
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, 0f);
+        yield return fadePanel.DOFade(1f, fadeDuration).SetEase(Ease.OutSine).WaitForCompletion();
     }
 }

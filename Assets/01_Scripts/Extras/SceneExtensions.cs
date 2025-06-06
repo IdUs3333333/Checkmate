@@ -43,8 +43,8 @@ public static class SE // Scene Extensions
 
     public static void LoadSceneWithAnimation(string sceneName)
     {
-        nextScene = sceneName;
         Debug.Log($"Loading Scene With Animation... {sceneName}");
+        nextScene = sceneName;
         SceneManager.LoadScene(loading);
     }
 }

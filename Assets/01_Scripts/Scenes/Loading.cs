@@ -13,6 +13,9 @@ public class Loading : MonoBehaviour
     [SerializeField] private GameObject decorationObject;
     [SerializeField] private TextMeshProUGUI loadingTipText;
 
+    [SerializeField] private Image fadePanel;
+    [SerializeField] private float fadeDuration = 0.5f;
+
     private string[] loadingTips = 
     {
         "표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절표절" +
@@ -28,7 +31,11 @@ public class Loading : MonoBehaviour
         "이 게임은 고등학교 3학년 4명이서 만들었습니다!",
         "팀원으로는 개발(QA) 1명, 아트 2명, 기획 1명이 있습니다.",
         "이펙트 만들기는 재밌습니다!",
-        "메인 개발자는 사실 픽셀 아티스트입니다. 짜잔!"
+        "메인 개발자는 사실 픽셀 아티스트입니다. 짜잔!",
+        "노래는 나라에서 허락한 유일한 마약입니다.",
+        "여러분들도 Miiro 노래를 들어보세요!",
+        "취업 준비는 언제나 힘듭니다...",
+        "아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아"
     };
 
     private void Awake()
@@ -45,6 +52,8 @@ public class Loading : MonoBehaviour
 
     private void Start()
     {
+        Fade();
+
         LoadingDecoration();
         LoadingTips();
 
@@ -73,33 +82,50 @@ public class Loading : MonoBehaviour
     }
     public IEnumerator Load(string nextSceneName)
     {
-        Debug.Log("Loading Start");
-
         if(nextSceneName == SE.loading && nextSceneName == string.Empty)
         {
-            Debug.Log("Scene is loading or empty!");
-
             SE.LoadScene(SE.lobby);
             yield return null;
         }
-        Debug.Log("Scene is not loading or empty!");
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(nextSceneName);
-        async.allowSceneActivation = false;
+        float duration = 5f;
+        float timer = 0f;
 
-        while (!async.isDone)
+        while(timer < duration)
         {
-            // 변화 주기
-            loadSlider.value = async.progress;
-
-            if (async.progress >= 0.9f)
-            {
-                // 마무리
-                Debug.Log("Loading Finished!");
-                async.allowSceneActivation = true;
-            }
-
+            timer += Time.deltaTime;
+            float progress = timer / duration;
+            loadSlider.value = progress;
             yield return null;
         }
+
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, 0f);
+        yield return fadePanel.DOFade(1f, fadeDuration).SetEase(Ease.OutQuad).WaitForCompletion();
+
+        SE.LoadScene(nextSceneName);
+    }
+
+    public void Fade(bool isIn = true)
+    {
+        if (isIn)
+        {
+            StartCoroutine(FadeIn());
+        }
+        else StartCoroutine(FadeOut());
+    }
+
+    private IEnumerator FadeIn()
+    {
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, 1f);
+        yield return fadePanel.DOFade(0f, fadeDuration).SetEase(Ease.InSine).WaitForCompletion();
+    }
+
+    private IEnumerator FadeOut()
+    {
+        Color c = fadePanel.color;
+        fadePanel.color = new Color(c.r, c.g, c.b, 0f);
+        yield return fadePanel.DOFade(1f, fadeDuration).SetEase(Ease.OutSine).WaitForCompletion();
     }
 }

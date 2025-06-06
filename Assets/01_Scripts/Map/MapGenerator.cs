@@ -49,7 +49,9 @@ public class MapGenerator : MonoBehaviour
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
         currentMap.type = currentMapType;
 
-        GameManager.Instance.MapReset(currentMap);
+        GameManager.Instance.MapReset();
+        GameManager.Instance.player.transform.SetPositionAndRotation
+            (currentMap.playerSpawnpoint.position, Quaternion.identity);
 
         currentMap.SpawnEnemies(0.5f);
     }

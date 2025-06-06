@@ -1,4 +1,7 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasGroupPanel : MonoBehaviour
@@ -40,12 +43,26 @@ public class CanvasGroupPanel : MonoBehaviour
 
     public void Replay()
     {
-        SE.LoadSceneWithAnimation(SE.ingame);
+        Time.timeScale = 1;
+        StartCoroutine(ReplayCoroutine(SE.ingame));
     }
 
     public void Return()
     {
-        SE.LoadSceneWithAnimation(SE.lobby);
+        Time.timeScale = 1;
+        StartCoroutine(ReplayCoroutine(SE.lobby));
+    }
+
+    private IEnumerator ReplayCoroutine(string sceneName)
+    {
+        Color c = GameManager.Instance.fadePanel.color;
+        GameManager.Instance.fadePanel.color = new Color(c.r, c.g, c.b, 0f);
+        yield return GameManager.Instance.fadePanel.DOFade(1f, GameManager.Instance.fadeDuration).SetEase(Ease.OutSine).WaitForCompletion();
+
+        yield return new WaitForSeconds(GameManager.Instance.fadeDuration);
+
+        SE.nextScene = sceneName;
+        SceneManager.LoadScene(SE.loading);
     }
 
     private void Active(bool value = true)
