@@ -235,6 +235,7 @@ MonoBehaviour:
   animator: {fileID: 6399088581422627032}
   stats: {fileID: 11400000, guid: b59f490c45f79aa47962c198556c6548, type: 2}
   smashEffect: {fileID: 0}
+  dieEffect: {fileID: 2414651732925688540, guid: ec10c68312f3e2c4eb9c1525924a5d00, type: 3}
 --- !u!114 &5118572420024773688
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -144,6 +144,7 @@ MonoBehaviour:
   animator: {fileID: 2045303154915509032}
   stats: {fileID: 11400000, guid: e9d2fa8de05541741b514b0ec7dac368, type: 2}
   bone: {fileID: 8677823576729823077, guid: 211bdd50dc6845944b6d8ae5138adc4e, type: 3}
+  dieEffect: {fileID: 9108002788686458359, guid: 26642f055aaccf24a8cd954580858eb2, type: 3}
 --- !u!95 &2045303154915509032
 Animator:
   serializedVersion: 7

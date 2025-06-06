@@ -58,6 +58,7 @@ MonoBehaviour:
   currentHP: 0
   animator: {fileID: 2414542580171263830}
   stats: {fileID: 11400000, guid: b38310e473f80e345bf892eb3a87d010, type: 2}
+  dieEffect: {fileID: 2414651732925688540, guid: ec10c68312f3e2c4eb9c1525924a5d00, type: 3}
 --- !u!114 &7249448293135850609
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -146,6 +146,7 @@ MonoBehaviour:
   animator: {fileID: 5789237467090161675}
   stats: {fileID: 11400000, guid: b1ca4cef2d7595143b409df72d3833ac, type: 2}
   attack: {fileID: 5816208508647872284}
+  dieEffect: {fileID: 6154152162496946624, guid: 3a78b1ff2722ec04eba2711569269ef2, type: 3}
 --- !u!95 &5789237467090161675
 Animator:
   serializedVersion: 7

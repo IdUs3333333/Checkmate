@@ -18,6 +18,8 @@ public enum EnemyState
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject dieEffect;
+
     private MapBase currentMap;
 
     public EnemyType type;
@@ -50,14 +52,10 @@ public class Enemy : MonoBehaviour
     {
         if(currentHP <= 0 && !dieTrigger)
         {
-            if(TryGetComponent(out EliteSlime entity))
-            {
-                Debug.Log($"Died - {entity.name}");
-            }
-
             if (currentMap == null) currentMap = FindFirstObjectByType<MapBase>();
             currentMap.OnEnemyDeath();
             dieTrigger = !dieTrigger;
+            Instantiate(dieEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             return;
         }

@@ -237,7 +237,7 @@ public class EliteSlime : Enemy
 
     private void Die()
     {
-        Debug.Log("Log - Died");
+        
     }
 
     private void OnDrawGizmos()
