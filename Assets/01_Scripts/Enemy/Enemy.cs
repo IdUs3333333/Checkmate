@@ -33,9 +33,17 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        ApplyDifficultyScaling();
         currentHP = maxHP;
         currentMap = FindFirstObjectByType<MapBase>();
         state = EnemyState.Idle;
+    }
+    
+    private void ApplyDifficultyScaling()
+    {
+        int floor = GameManager.Instance.currentFloor;
+        float multiplier = 1f + 0.15f * (floor - 1);
+        maxHP = Mathf.RoundToInt(maxHP * multiplier);
     }
 
     public void Damage(float value)
