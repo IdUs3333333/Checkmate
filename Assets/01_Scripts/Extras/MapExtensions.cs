@@ -10,6 +10,11 @@ public enum MapType
     BasicCombat, ExtendedCombat, Reward, Mystery, EliteCombat, BossCombat, StartRoom
 }
 
+public enum StatType
+{
+    HP, AttackDamage, MoveSpeed, AttackSpeed, CritChance, CritMultiplier, EvasionChance
+}
+
 public static class ME
 {
     public static int[] easyPortalCount = { 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1 };

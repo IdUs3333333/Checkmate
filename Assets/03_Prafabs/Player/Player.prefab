@@ -380,19 +380,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348e9d0eda100924abdb8e7c56a0e77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 4
-  attackDamage: 3
-  attackSpeed: 0.5
-  moveSpeed: 4
   chessType: 0
+  baseHP: 4
+  baseAttackDamage: 3
+  baseAttackSpeed: 0.5
+  baseMoveSpeed: 4
+  baseCritChance: 0
+  baseCritMultiplier: 200
+  baseEvasionChance: 0
   reinforcements: []
-  attackRange:
-  - 1
+  baseAttackRange:
+  - 2
   - 4.5
   - 2.5
   - 5
   - 7.5
-  - 1
+  - 2
 --- !u!70 &4927989539439905010
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

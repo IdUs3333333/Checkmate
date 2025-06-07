@@ -37,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator AttackCoroutine(IAttackStrategy strategy)
     {
         isAttacking = true;
-        attackRange = player.stats.attackRange[(int)player.type];
+        attackRange = player.stats.baseAttackRange[(int)player.type];
         yield return strategy.ExecuteAttack(player, transform, mainCam);
         yield return new WaitForSeconds(player.stats.attackSpeed);
         isAttacking = false;

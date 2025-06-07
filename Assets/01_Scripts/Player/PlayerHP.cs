@@ -2,19 +2,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField] private Image[] hpHearts;
+    [SerializeField] private GameObject hpPrefab;
     [SerializeField] private Sprite[] heartSprites;
+
+    private List<Image> hpHearts = new List<Image>();
+    private Player player;
 
     public int playerHP = 4;
     public float invincibleDuration = 0.5f;
     public bool isInvincible = false;
 
-    private void Awake()
+    private void Start()
     {
-        playerHP = 4;
+        player = FindFirstObjectByType<Player>();
+        playerHP = player.stats.hp;
+        for(int i = 0; i < playerHP; i++)
+        {
+            GameObject hpObject = Instantiate(hpPrefab, transform);
+            Image heartImage = hpObject.GetComponent<Image>();
+            hpHearts.Add(heartImage);
+        }
+
         foreach(Image heart in hpHearts)
         {
             heart.sprite = heartSprites[0];
@@ -38,15 +50,16 @@ public class PlayerHP : MonoBehaviour
     {
         if(playerHP > 0)
         {
-            playerHP = Mathf.Clamp(playerHP - value, 0, 4);
+            int prevHP = playerHP;
+            playerHP = Mathf.Clamp(playerHP - value, 0, player.stats.hp);
+            
+            for(int i = playerHP; i < prevHP; i++)
+            {
+                hpHearts[i].gameObject.transform.DOComplete();
+                hpHearts[i].gameObject.transform.DOShakePosition(0.5f, 10, 100);
+            }
 
-            Image heart = hpHearts[playerHP];
-            heart.sprite = heartSprites[1];
-            heart.gameObject.transform.DOComplete();
-            heart.gameObject.transform.DOShakePosition(0.5f, 10, 100);
-
-            Camera.main.transform.DOComplete();
-            Camera.main.transform.DOShakePosition(0.25f, 1, 100);
+            UpdateHeartSprites();
 
             if(playerHP <= 0)
             {
@@ -66,14 +79,48 @@ public class PlayerHP : MonoBehaviour
 
     public void Heal(int value = 1)
     {
-        if(playerHP < 4)
+        if(playerHP < player.stats.hp)
         {
-            Image heart = hpHearts[playerHP];
-            heart.sprite = heartSprites[0];
-            heart.gameObject.transform.DOComplete();
-            heart.gameObject.transform.DOShakeScale(0.25f, 0.5f);
+            int prevHP = playerHP;
+            playerHP = Mathf.Clamp(playerHP + value, 0, player.stats.hp);
+            
+            for(int i = prevHP; i < playerHP; i++)
+            {
+                hpHearts[i].gameObject.transform.DOComplete();
+                hpHearts[i].gameObject.transform.DOShakeScale(0.25f, 0.5f);
+            }
 
-            playerHP = Mathf.Clamp(playerHP + value, 0, 4);
+            UpdateHeartSprites();
+        }
+    }
+
+    public void RefreshHP()
+    {
+        int maxHP = player.stats.hp;
+
+        while(hpHearts.Count < maxHP)
+        {
+            GameObject hpObject = Instantiate(hpPrefab, transform);
+            Image heartImage = hpObject.GetComponent<Image>();
+            heartImage.sprite = heartSprites[0];
+            hpHearts.Add(heartImage);
+        }
+
+        while (hpHearts.Count < maxHP)
+        {
+            Destroy(hpHearts[hpHearts.Count - 1].gameObject);
+            hpHearts.RemoveAt(hpHearts.Count - 1);
+        }
+
+        UpdateHeartSprites();
+    }
+
+    private void UpdateHeartSprites()
+    {
+        for (int i = 0; i < hpHearts.Count; i++)
+        {
+            if (i < playerHP) hpHearts[i].sprite = heartSprites[0];
+            else hpHearts[i].sprite = heartSprites[1];
         }
     }
 }
