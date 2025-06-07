@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockBackTime = 0.125f;
 
     public Portal currentPortal;
+    public Chest currentChest;
 
     private void Awake()
     {
@@ -40,7 +41,11 @@ public class Player : MonoBehaviour
 
     private void Interact()
     {
-        if(currentPortal != null)
+        if(currentChest != null)
+        {
+            currentChest.Interact();
+        }
+        else if(currentPortal != null)
         {
             currentPortal.Interact();
         }

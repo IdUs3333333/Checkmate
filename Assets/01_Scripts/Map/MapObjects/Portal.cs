@@ -77,6 +77,7 @@ public class Portal : MonoBehaviour
         portalText.text = diff == Difficulty.Easy ? "EASY" : "HARD";
         portalText.color = new Color(1, 1, 1, isStart ? 1 : 0);
     }
+
     private void Update()
     {
         isNear = player.transform.position.IsNear(transform.position, interactDist);

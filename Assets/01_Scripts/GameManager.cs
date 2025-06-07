@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseReinforceUI()
     {
+        Destroy(player.currentChest.gameObject);
         reinforcementPanel.Close();
         Time.timeScale = 1f;
     }

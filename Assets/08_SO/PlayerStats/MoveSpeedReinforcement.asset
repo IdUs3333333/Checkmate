@@ -18,7 +18,7 @@ MonoBehaviour:
   description: Increases move speed by 10/20/30/40 percent
   statType: 2
   values:
-  - 10
-  - 20
-  - 30
-  - 40
+  - 0.4
+  - 0.8
+  - 1.2
+  - 1.6

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   displayName: Crit Damage
-  icon: {fileID: 4515673847070758696, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
+  icon: {fileID: 4433489024222456982, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
   description: Increases critical damage by 50/100/150/200 percent
   statType: 5
   values:

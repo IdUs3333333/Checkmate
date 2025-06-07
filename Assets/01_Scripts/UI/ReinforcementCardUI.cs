@@ -19,6 +19,8 @@ public class ReinforcementCardUI : MonoBehaviour
         selectButton.onClick.AddListener(() =>
         {
             GameManager.Instance.player.stats.AddReinforces(data);
+            GameManager.Instance.player.hp.RefreshHP();
+            GameManager.Instance.player.hp.Heal();
             GameManager.Instance.CloseReinforceUI();
         });
     }
