@@ -31,6 +31,7 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.MapReset(true);
         GenerateMap(MapType.StartRoom);
     }
 

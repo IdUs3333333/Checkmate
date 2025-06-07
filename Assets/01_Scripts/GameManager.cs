@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        MapReset();
+        MapReset(true);
 
         Time.timeScale = 1;
         Fade();
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MapReset()
+    public void MapReset(bool resetScore = false)
     {
         player = FindFirstObjectByType<Player>();
 
@@ -68,9 +68,12 @@ public class GameManager : MonoBehaviour
         info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
         info.SetInfo();
 
-        gameScore = 0;
-        clearedRoomCount = 0;
-        currentFloor = 1;
+        if (resetScore)
+        {
+            gameScore = 0;
+            clearedRoomCount = 0;
+            currentFloor = 1;
+        }
     }
 
     public void GetScore(int score)
