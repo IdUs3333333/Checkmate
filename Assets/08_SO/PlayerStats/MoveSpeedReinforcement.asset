@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MoveSpeedReinforcement
   m_EditorClassIdentifier: 
   id: 2
-  displayName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
+  displayName: Move Speed
   icon: {fileID: -6571755663383424711, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uC774\uB3D9\uC18D\uB3C4\uAC00 10/20/30/40% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: Increases move speed by 10/20/30/40 percent
   statType: 2
   values:
   - 10

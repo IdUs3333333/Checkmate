@@ -6,11 +6,6 @@ public enum ChessType
     Pawn, Bishop, Knight, Rook, Queen, King
 }
 
-public enum PlayerReinforces
-{
-
-}
-
 public class PlayerStats : MonoBehaviour
 {
     public ChessType chessType;
@@ -38,13 +33,25 @@ public class PlayerStats : MonoBehaviour
 
     public void ResetStats()
     {
-
+        reinforcements.Clear();
     }
 
-    public void AddReinforces(PlayerReinforces reinforcement)
+    public void AddReinforces(PlayerReinforcementSO reinforcement)
     {
-        // reinforcements 리스트에 reinforce 추가하기
-        // 조건문 해서 강화 / 추가 나누기
+        var found = reinforcements.Find(r => r.data == reinforcement);
+        if(found != null)
+        {
+            UpgradeStat(reinforcement);
+        }
+        else
+        {
+            reinforcements.Add(new ReinforcementStats
+            {
+                data = reinforcement,
+                level = 1,
+                unlocked = true
+            });
+        }
     }
 
     public float GetBonus(StatType type)
@@ -52,9 +59,10 @@ public class PlayerStats : MonoBehaviour
         float bonus = 0f;
         foreach (var r in reinforcements)
         {
-            if (r.unlocked && r.level > 0)
+            if (r.unlocked && r.level > 0 && r.data.statType == type)
             {
-                bonus += r.data.values[r.level - 1];
+                int index = Mathf.Clamp(r.level - 1, 0, r.data.values.Length - 1);
+                bonus += r.data.values[index];
             }
         }
         return bonus;

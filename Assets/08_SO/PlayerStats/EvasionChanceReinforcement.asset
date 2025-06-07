@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EvasionChanceReinforcement
   m_EditorClassIdentifier: 
   id: 6
-  displayName: "\uD68C\uD53C\uC728 \uC99D\uAC00"
+  displayName: Evasion Chance
   icon: {fileID: 4515673847070758696, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uD68C\uD53C\uC728\uC774 5/10/15/20% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: Increases evasion chance by 5/10/15/20 percent
   statType: 6
   values:
   - 5

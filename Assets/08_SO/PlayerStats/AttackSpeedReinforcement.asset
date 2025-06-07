@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AttackSpeedReinforcement
   m_EditorClassIdentifier: 
   id: 3
-  displayName: "\uACF5\uACA9\uC18D\uB3C4 \uAC10\uC18C"
+  displayName: Attack Speed
   icon: {fileID: -3036626290745232265, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uACF5\uACA9\uC18D\uB3C4\uAC00 12.5/25/37.5/50% \uAC10\uC18C\uD569\uB2C8\uB2E4."
+  description: Decreases attack speed by 12.5/25/37.5/50 percent
   statType: 3
   values:
   - 12.5

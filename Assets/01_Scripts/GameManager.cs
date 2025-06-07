@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroupPanel gameOverPanel;
     public CanvasGroupPanel gameClearPanel;
     public CanvasGroupPanel gamePausePanel;
+    public CanvasGroupPanel reinforcementPanel;
+    public ReinforcementPanel reinforcePanel;
     public CurrentInfo info;
 
     public Image fadePanel;
@@ -63,6 +65,10 @@ public class GameManager : MonoBehaviour
         gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
         gameClearPanel.Close();
 
+        reinforcementPanel = GameObject.Find("ReinforcementPanel").GetComponent<CanvasGroupPanel>();
+        reinforcementPanel.Close();
+        reinforcePanel = reinforcementPanel.GetComponent<ReinforcementPanel>();
+
         fadePanel = GameObject.Find("FadePanel").GetComponent<Image>();
 
         info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
@@ -98,6 +104,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             gamePausePanel.Close();
         }
+    }
+
+    public void OpenReinforceUI()
+    {
+        reinforcePanel.Init();
+        reinforcementPanel.Open();
+        Time.timeScale = 0f;
+    }
+
+    public void CloseReinforceUI()
+    {
+        reinforcementPanel.Close();
+        Time.timeScale = 1f;
     }
 
     public void GenerateEvent()

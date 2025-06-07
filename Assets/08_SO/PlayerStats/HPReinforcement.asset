@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HPReinforcement
   m_EditorClassIdentifier: 
   id: 0
-  displayName: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"
+  displayName: HP Growth
   icon: {fileID: -8479210310166909959, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uCD5C\uB300\uCCB4\uB825\uC774 1/2/3/4 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: Increases max hp by 1/2/3/4
   statType: 0
   values:
   - 1

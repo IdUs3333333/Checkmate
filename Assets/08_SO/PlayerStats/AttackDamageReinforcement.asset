@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AttackDamageReinforcement
   m_EditorClassIdentifier: 
   id: 1
-  displayName: "\uACF5\uACA9\uB825 \uC99D\uAC00"
+  displayName: Attack Damage
   icon: {fileID: 2368987747519767557, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uACF5\uACA9\uB825\uC774 20/30/40/50% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: Increases attackdamage by 20/30/40/50 percent
   statType: 1
   values:
   - 20

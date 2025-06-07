@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CriticalChanceReinforcement
   m_EditorClassIdentifier: 
   id: 4
-  displayName: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uC99D\uAC00"
+  displayName: Critical Chance
   icon: {fileID: 4515673847070758696, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: "\uCE58\uBA85\uD0C0 \uD655\uB960\uC774 25/50/75/100% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: Increases critical chance by 25/50/75/100 percent
   statType: 4
   values:
   - 25

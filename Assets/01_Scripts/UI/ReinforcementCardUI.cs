@@ -1,0 +1,25 @@
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class ReinforcementCardUI : MonoBehaviour
+{
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI descText;
+    [SerializeField] private Button selectButton;
+
+    public void SetCard(PlayerReinforcementSO data)
+    {
+        icon.sprite = data.icon;
+        nameText.text = data.displayName;
+        descText.text = data.description;
+
+        selectButton.onClick.RemoveAllListeners();
+        selectButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.player.stats.AddReinforces(data);
+            GameManager.Instance.CloseReinforceUI();
+        });
+    }
+}
