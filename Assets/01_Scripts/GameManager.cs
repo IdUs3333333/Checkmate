@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int maxGameScore = 0;
 
     public int clearedRoomCount = 0;
-    public int currentFloor = 1;
+    public int currentFloor = 0;
 
     public Player player;
 
@@ -66,10 +66,11 @@ public class GameManager : MonoBehaviour
         gameClearPanel.Close();
 
         reinforcementPanel = GameObject.Find("ReinforcementPanel").GetComponent<CanvasGroupPanel>();
-        reinforcementPanel.Close();
         reinforcePanel = reinforcementPanel.GetComponent<ReinforcementPanel>();
+        reinforcementPanel.Close();
 
         fadePanel = GameObject.Find("FadePanel").GetComponent<Image>();
+        fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, 0f);
 
         info = GameObject.Find("CurrentInfo").GetComponent<CurrentInfo>();
         info.SetInfo();
@@ -77,8 +78,8 @@ public class GameManager : MonoBehaviour
         if (resetScore)
         {
             gameScore = 0;
-            clearedRoomCount = 0;
-            currentFloor = 1;
+            clearedRoomCount = -1;
+            currentFloor = 0;
         }
     }
 
@@ -115,17 +116,13 @@ public class GameManager : MonoBehaviour
 
     public void CloseReinforceUI()
     {
+        MapGenerator.Instance.currentMap.OnEntityDestroy();
         Destroy(player.currentChest.gameObject);
         reinforcementPanel.Close();
         Time.timeScale = 1f;
     }
 
     public void GenerateEvent()
-    {
-
-    }
-
-    public void GenerateReward()
     {
 
     }
@@ -143,18 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void RoomCleared(MapType type)
     {
-        if(type == MapType.StartRoom)
-        {
-            clearedRoomCount++;
-            currentFloor = clearedRoomCount + 1;
-            MapGenerator.Instance.OnRoomClear(true);
-        }
-        else
-        {
-            clearedRoomCount++;
-            currentFloor = clearedRoomCount + 1;
-            MapGenerator.Instance.OnRoomClear();
-        }
+        MapGenerator.Instance.OnRoomClear((type == MapType.StartRoom) ? true : false);
     }
 
     public void GameClear()

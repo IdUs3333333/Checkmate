@@ -67,6 +67,8 @@ public class CanvasGroupPanel : MonoBehaviour
 
     private void Active(bool value = true)
     {
+        if (canvas == null) canvas = GetComponent<CanvasGroup>();
+
         isOpened = value;
 
         canvas.alpha = value ? 1 : 0;

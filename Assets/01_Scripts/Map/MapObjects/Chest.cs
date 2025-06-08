@@ -8,7 +8,6 @@ public class Chest : MonoBehaviour
     private Player player;
     private Animator animator;
     private bool isNear = false;
-    private bool isInteractRequired = false;
 
     private void Start()
     {

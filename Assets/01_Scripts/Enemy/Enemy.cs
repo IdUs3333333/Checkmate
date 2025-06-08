@@ -61,9 +61,10 @@ public class Enemy : MonoBehaviour
         if(currentHP <= 0 && !dieTrigger)
         {
             if (currentMap == null) currentMap = FindFirstObjectByType<MapBase>();
-            currentMap.OnEnemyDeath();
+            currentMap.OnEntityDestroy();
             dieTrigger = !dieTrigger;
-            Instantiate(dieEffect, transform.position, Quaternion.identity);
+            GameObject dieEffectObject = Instantiate(dieEffect, transform.position, Quaternion.identity);
+            Destroy(dieEffect, 2f);
             Destroy(gameObject);
             return;
         }

@@ -44,17 +44,21 @@ public class MapGenerator : MonoBehaviour
 
         Debug.Log("<color=#777777>Generating Map...</color>");
 
+        GameManager.Instance.clearedRoomCount++;
+        GameManager.Instance.currentFloor = GameManager.Instance.clearedRoomCount + 1;
         currentMapType = type;
-
         int n = Random.Range(0, maps[type].Count);
         currentMap = Instantiate(maps[type][n], Vector3.zero, Quaternion.identity);
-        currentMap.type = currentMapType;
+        currentMap.Init(currentMapType);
 
         GameManager.Instance.MapReset();
         GameManager.Instance.player.transform.SetPositionAndRotation
             (currentMap.playerSpawnpoint.position, Quaternion.identity);
 
-        currentMap.SpawnEnemies(0.5f);
+        if(currentMap.type != MapType.StartRoom)
+        {
+            currentMap.SpawnEntities(0.5f);
+        }
     }
 
     public void OnRoomClear(bool isStart = false)

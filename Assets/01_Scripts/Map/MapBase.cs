@@ -3,7 +3,7 @@ using System.Linq;
 
 public class MapBase : MonoBehaviour
 {
-    public EnemySpawnpoint[] enemySpawnpoints;
+    public Spawnpoint[] entitySpawnpoints;
     public Transform playerSpawnpoint;
     public Transform portalSpawnpoint;
 
@@ -12,8 +12,8 @@ public class MapBase : MonoBehaviour
     public int maxTurnCount = 1;
     public int currentTurnCount = 0;
 
-    private int maxEnemyCount;
-    public int currentEnemyCount;
+    private int maxEntityCount;
+    public int currentEntityCount;
 
     private bool spawnEnemyTrigger = true;
 
@@ -27,66 +27,54 @@ public class MapBase : MonoBehaviour
     {
         Debug.Log($"<color=#5283CC>Current Floor : {GameManager.Instance.currentFloor}F</color>");
 
-        maxEnemyCount = enemySpawnpoints.Length;
+        maxEntityCount = entitySpawnpoints.Length;
         maxTurnCount = 1;
 
         switch(type)
         {
             case MapType.BasicCombat:
-                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
-                {
-                    enemySpawnpoints.Append(point);
-                    maxTurnCount = point.enemy.Count;
-                }
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 1;
                 break;
 
             case MapType.BossCombat:
-                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
-                {
-                    enemySpawnpoints.Append(point);
-                    maxTurnCount = point.enemy.Count;
-                }
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 1;
                 break;
 
             case MapType.EliteCombat:
-                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
-                {
-                    enemySpawnpoints.Append(point);
-                    maxTurnCount = point.enemy.Count;
-                }
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 2;
                 break;
 
             case MapType.ExtendedCombat:
-                foreach (EnemySpawnpoint point in transform.GetComponentsInChildren<EnemySpawnpoint>())
-                {
-                    enemySpawnpoints.Append(point);
-                    maxTurnCount = point.enemy.Count;
-                }
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 3;
                 break;
 
             case MapType.Mystery:
-                GameManager.Instance.GenerateEvent();
-                GameManager.Instance.RoomCleared(MapType.Mystery);
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 1;
                 break;
 
             case MapType.Reward:
-                GameManager.Instance.GenerateReward();
-                GameManager.Instance.RoomCleared(MapType.Reward);
+                entitySpawnpoints = transform.GetComponentsInChildren<Spawnpoint>();
+                maxTurnCount = 1;
                 break;
 
             case MapType.StartRoom:
+                maxTurnCount = 0;
                 GameManager.Instance.RoomCleared(MapType.StartRoom);
                 break;
         }
     }
 
-    public void SpawnEnemies(float delaySecond)
+    public void SpawnEntities(float delaySecond)
     {
 
         if (currentTurnCount < maxTurnCount && spawnEnemyTrigger)
         {
             Invoke("InvokedSpawnEnemies", delaySecond);
-
             Debug.Log($"<color=#7777FF>currentTurnCount</color> : <color=#85B6FF>{currentTurnCount}</color>");
             Debug.Log($"<color=#7777FF>maxTurnCount</color> : <color=#85B6FF>{maxTurnCount}</color>");
         }
@@ -104,21 +92,28 @@ public class MapBase : MonoBehaviour
     private void InvokedSpawnEnemies()
     {
         currentTurnCount++;
-        currentEnemyCount = maxEnemyCount;
+        int currentMaxEntityCount = 0;
 
-        foreach (EnemySpawnpoint point in enemySpawnpoints)
+        foreach (Spawnpoint point in entitySpawnpoints)
         {
-            point.EnemySpawn(currentTurnCount);
+            if (point.entity.Count == 0)
+            {
+                GameManager.Instance.RoomCleared(type);
+                return;
+            }
+            currentMaxEntityCount += point.EnemySpawn(currentTurnCount);
         }
+        maxEntityCount = currentMaxEntityCount;
+        currentEntityCount = maxEntityCount;
     }
 
-    public void OnEnemyDeath()
+    public void OnEntityDestroy()
     {
-        currentEnemyCount--;
+        currentEntityCount--;
 
-        if(currentEnemyCount <= 0)
+        if(currentEntityCount <= 0)
         {
-            SpawnEnemies(0.5f);
+            SpawnEntities(0.5f);
         }
     }
 }

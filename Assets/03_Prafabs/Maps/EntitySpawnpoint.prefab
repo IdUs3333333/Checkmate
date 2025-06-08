@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7295473069042375178}
   - component: {fileID: 7765841399570350570}
   m_Layer: 0
-  m_Name: EnemySpawnpoint
+  m_Name: EntitySpawnpoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd0e71472982e3408e1c6355cb64ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  entity: []
