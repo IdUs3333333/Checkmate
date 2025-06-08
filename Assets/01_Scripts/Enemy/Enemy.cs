@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     private void ApplyDifficultyScaling()
     {
         int floor = GameManager.Instance.currentFloor;
-        float multiplier = 1f + 0.15f * (floor - 1);
+        float multiplier = 1f + 0.1f * (floor - 1);
         maxHP = Mathf.RoundToInt(maxHP * multiplier);
     }
 
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
             currentMap.OnEntityDestroy();
             dieTrigger = !dieTrigger;
             GameObject dieEffectObject = Instantiate(dieEffect, transform.position, Quaternion.identity);
-            Destroy(dieEffect, 2f);
+            Destroy(dieEffectObject.gameObject, 1.5f);
             Destroy(gameObject);
             return;
         }

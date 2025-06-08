@@ -15,6 +15,11 @@ public enum StatType
     HP, AttackDamage, MoveSpeed, AttackSpeed, CritChance, CritMultiplier, EvasionChance
 }
 
+public enum EventType
+{
+    Heal, SpawnEnemy, Chest
+}
+
 public static class ME
 {
     public static int[] easyPortalCount = { 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1 };

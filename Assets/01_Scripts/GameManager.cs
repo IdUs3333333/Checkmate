@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public CanvasGroupPanel gamePausePanel;
     public CanvasGroupPanel reinforcementPanel;
     public ReinforcementPanel reinforcePanel;
+    public CanvasGroupPanel mysteryEventPanel;
+    public MysteryPanel mysteryPanel;
     public CurrentInfo info;
 
     public Image fadePanel;
@@ -69,6 +71,10 @@ public class GameManager : MonoBehaviour
         reinforcePanel = reinforcementPanel.GetComponent<ReinforcementPanel>();
         reinforcementPanel.Close();
 
+        mysteryEventPanel = GameObject.Find("MysteryPanel").GetComponent<CanvasGroupPanel>();
+        mysteryPanel = mysteryEventPanel.GetComponent<MysteryPanel>();
+        mysteryEventPanel.Close();
+
         fadePanel = GameObject.Find("FadePanel").GetComponent<Image>();
         fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, 0f);
 
@@ -109,6 +115,13 @@ public class GameManager : MonoBehaviour
 
     public void OpenReinforceUI()
     {
+        if (reinforcePanel.available.Count == 0)
+        {
+            MapGenerator.Instance.currentMap.OnEntityDestroy();
+            Destroy(player.currentChest.gameObject);
+            return;
+        }
+
         reinforcePanel.Init();
         reinforcementPanel.Open();
         Time.timeScale = 0f;
@@ -122,9 +135,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void GenerateEvent()
+    public void OpenEventUI()
     {
+        mysteryPanel.Init();
+        mysteryEventPanel.Open();
+    }
 
+    public void CloseEventUI()
+    {
+        MapGenerator.Instance.currentMap.OnEntityDestroy();
+        Destroy(player.currentStatue.gameObject);
+        mysteryEventPanel.Close();
+        
     }
 
     public void GameOver()

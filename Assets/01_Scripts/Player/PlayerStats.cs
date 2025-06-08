@@ -89,4 +89,10 @@ public class PlayerStats : MonoBehaviour
             Debug.Log($"{so.displayName} °­È­ ({found.level - 1} ¡æ{found.level})");
         }
     }
+
+    public bool CanUpgrade(PlayerReinforcementSO so)
+    {
+        var found = reinforcements.Find(r => r.data == so);
+        return found == null || (found.unlocked && found.level < 3);
+    }
 }

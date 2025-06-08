@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     public Portal currentPortal;
     public Chest currentChest;
+    public Statue currentStatue;
 
     private void Awake()
     {
@@ -44,6 +45,10 @@ public class Player : MonoBehaviour
         if(currentChest != null)
         {
             currentChest.Interact();
+        }
+        else if(currentStatue != null)
+        {
+            currentStatue.Interact();
         }
         else if(currentPortal != null)
         {

@@ -17,6 +17,8 @@ public class MapGenerator : MonoBehaviour
     public MapType currentMapType = MapType.StartRoom;
     public Difficulty currentDifficulty = Difficulty.Easy;
 
+    public bool isPortalSpawned = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -41,6 +43,7 @@ public class MapGenerator : MonoBehaviour
         {
             Destroy(currentMap.gameObject);
         }
+        isPortalSpawned = false;
 
         Debug.Log("<color=#777777>Generating Map...</color>");
 
@@ -69,6 +72,8 @@ public class MapGenerator : MonoBehaviour
 
     public void GeneratePortal(int floor, bool isStart)
     {
+        if (isPortalSpawned) return;
+
         if (isStart)
         {
             MapType nextMap1 = easyMapList[floor][Random.Range(0, easyMapList[floor].Count)];
@@ -139,6 +144,8 @@ public class MapGenerator : MonoBehaviour
                     break;
             }
         }
+
+        isPortalSpawned = true;
     }
 
     public void SpawnPortal(MapType type, Difficulty difficulty, float offset = 0f, bool isStart = false)

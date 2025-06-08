@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ReinforcementCardUI : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class ReinforcementCardUI : MonoBehaviour
             GameManager.Instance.player.stats.AddReinforces(data);
             GameManager.Instance.player.hp.RefreshHP();
             GameManager.Instance.player.hp.Heal();
+            GameManager.Instance.reinforcePanel.available = 
+                GameManager.Instance.reinforcePanel.allReinforcements
+                .Where(r => GameManager.Instance.player.stats.CanUpgrade(r)).ToList();
             GameManager.Instance.CloseReinforceUI();
         });
     }
