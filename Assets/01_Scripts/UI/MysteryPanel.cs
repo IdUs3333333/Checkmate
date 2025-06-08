@@ -33,6 +33,7 @@ public class MysteryPanel : MonoBehaviour
         isRolled = false;
         rollSelectButton.interactable = true;
         icon.sprite = null;
+        icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 0);
         nameText.text = string.Empty;
         descText.text = string.Empty;
     }
@@ -58,6 +59,7 @@ public class MysteryPanel : MonoBehaviour
         float rollDuration = 2f;
         float elapsed = 0f;
 
+        icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1);
         while (elapsed < rollDuration)
         {
             selected = allMysteryEvents[Random.Range(0, allMysteryEvents.Count)];
