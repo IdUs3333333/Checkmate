@@ -1,7 +1,7 @@
 {
     "easy": {
-        "highScore": 221,
-        "shortest_Record": 0.0
+        "highScore": 0,
+        "shortest_Record": 2147483648.0
     },
     "normal": {
         "highScore": 0,
@@ -9,6 +9,6 @@
     },
     "hard": {
         "highScore": 0,
-        "shortest_Record": 0.0
+        "shortest_Record": 2147483648.0
     }
 }

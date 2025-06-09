@@ -124,11 +124,22 @@ public class Lobby : MonoBehaviour
 
     private void DataReset()
     {
+        Debug.Log($"Easy HighScore : {DataManager.Instance.GetHighScore(Difficulty.Easy)}" +
+            $"\nHard HighScore : {DataManager.Instance.GetHighScore(Difficulty.Hard)}" +
+            $"\nEasy PlayTime : {DataManager.Instance.GetPlayTime(Difficulty.Easy)}" +
+            $"\nHard PlayTime : {DataManager.Instance.GetPlayTime(Difficulty.Hard)}");
+
         DataManager.Instance.SetHighScore(Difficulty.Easy, 0);
         DataManager.Instance.SetHighScore(Difficulty.Hard, 0);
         DataManager.Instance.SetPlayTime(Difficulty.Easy, int.MaxValue);
         DataManager.Instance.SetPlayTime(Difficulty.Hard, int.MaxValue);
         DataManager.Instance.SaveData();
+
+        Debug.Log("Data Reset!");
+        Debug.Log($"Easy HighScore : {DataManager.Instance.GetHighScore(Difficulty.Easy)}" +
+            $"\nHard HighScore : {DataManager.Instance.GetHighScore(Difficulty.Hard)}" +
+            $"\nEasy PlayTime : {DataManager.Instance.GetPlayTime(Difficulty.Easy)}" +
+            $"\nHard PlayTime : {DataManager.Instance.GetPlayTime(Difficulty.Hard)}");
     }
 
     private void Active(CanvasGroup canvas, bool value = true)

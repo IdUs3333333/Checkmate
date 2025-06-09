@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using SaveSystem.Manager;
 using SaveSystem.Data;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,15 +47,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        MapReset(true);
-
         Time.timeScale = 1;
-        Fade();
+        if (SceneManager.GetActiveScene().name == SE.ingame)
+        {
+            MapReset(true);
+            Fade();
+        }
     }
 
     private void Update()
     {
-        playTime += Time.deltaTime;
+        playTime = playTime + Time.deltaTime;
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -101,6 +104,7 @@ public class GameManager : MonoBehaviour
 
         if (resetScore)
         {
+            playTime = 0f;
             gameScore = 0;
             clearedRoomCount = -1;
             currentFloor = 0;
@@ -185,15 +189,16 @@ public class GameManager : MonoBehaviour
             gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
         }
 
-        GetScore(10);
+        GetScore(50);
         gameClearPanel.Open();
-        Time.timeScale = 0;
 
         int highScore = DataManager.Instance.GetHighScore(difficulty);
         bool isNewHighScore = highScore < gameScore;
         if (isNewHighScore) DataManager.Instance.TrySetHighScore(difficulty, gameScore);
 
+
         float highTimeRecord = DataManager.Instance.GetPlayTime(difficulty);
+        Debug.Log($"{highTimeRecord} / {playTime}");
         bool isNewPlayTime = highTimeRecord > playTime;
         if (isNewPlayTime) DataManager.Instance.TrySetPlayTime(difficulty, playTime);
 
