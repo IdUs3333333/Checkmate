@@ -2,12 +2,16 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using SaveSystem.Manager;
+using SaveSystem.Data;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public CanvasGroupPanel gameOverPanel;
     public CanvasGroupPanel gameClearPanel;
+    public TextMeshProUGUI gameClearScoreText;
     public CanvasGroupPanel gamePausePanel;
     public CanvasGroupPanel reinforcementPanel;
     public ReinforcementPanel reinforcePanel;
@@ -22,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public int gameScore = 0;
     public int maxGameScore = 0;
+
+    public float playTime;
 
     public int clearedRoomCount = 0;
     public int currentFloor = 0;
@@ -48,14 +54,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        playTime += Time.deltaTime;
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame(!gamePausePanel.isOpened);
         }
     }
 
+    public void GetScore(int score)
+    {
+        gameScore += score;
+        gameScore = Mathf.Clamp(gameScore, 0, gameScore);
+    }
+
     public void MapReset(bool resetScore = false)
     {
+        DataManager.Instance.LoadData();
+
         player = FindFirstObjectByType<Player>();
 
         gameOverPanel = GameObject.Find("GameOverPanel").GetComponent<CanvasGroupPanel>();
@@ -66,6 +82,8 @@ public class GameManager : MonoBehaviour
 
         gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
         gameClearPanel.Close();
+
+        gameClearScoreText = GameObject.Find("RecordText").GetComponent<TextMeshProUGUI>();
 
         reinforcementPanel = GameObject.Find("ReinforcementPanel").GetComponent<CanvasGroupPanel>();
         reinforcePanel = reinforcementPanel.GetComponent<ReinforcementPanel>();
@@ -89,11 +107,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GetScore(int score)
-    {
-        gameScore += score;
-    }
-
     public void PauseGame(bool value = true)
     {
         if(gamePausePanel == null)
@@ -115,6 +128,8 @@ public class GameManager : MonoBehaviour
 
     public void OpenReinforceUI()
     {
+        GetScore(3);
+
         if (reinforcePanel.available.Count == 0)
         {
             MapGenerator.Instance.currentMap.OnEntityDestroy();
@@ -124,7 +139,6 @@ public class GameManager : MonoBehaviour
 
         reinforcePanel.Init();
         reinforcementPanel.Open();
-        Time.timeScale = 0f;
     }
 
     public void CloseReinforceUI()
@@ -132,11 +146,11 @@ public class GameManager : MonoBehaviour
         MapGenerator.Instance.currentMap.OnEntityDestroy();
         Destroy(player.currentChest.gameObject);
         reinforcementPanel.Close();
-        Time.timeScale = 1f;
     }
 
     public void OpenEventUI()
     {
+        GetScore(3);
         mysteryPanel.Init();
         mysteryEventPanel.Open();
     }
@@ -146,7 +160,6 @@ public class GameManager : MonoBehaviour
         MapGenerator.Instance.currentMap.OnEntityDestroy();
         Destroy(player.currentStatue.gameObject);
         mysteryEventPanel.Close();
-        
     }
 
     public void GameOver()
@@ -172,8 +185,29 @@ public class GameManager : MonoBehaviour
             gameClearPanel = GameObject.Find("GameClearPanel").GetComponent<CanvasGroupPanel>();
         }
 
+        GetScore(10);
         gameClearPanel.Open();
         Time.timeScale = 0;
+
+        int highScore = DataManager.Instance.GetHighScore(difficulty);
+        bool isNewHighScore = highScore < gameScore;
+        if (isNewHighScore) DataManager.Instance.TrySetHighScore(difficulty, gameScore);
+
+        float highTimeRecord = DataManager.Instance.GetPlayTime(difficulty);
+        bool isNewPlayTime = highTimeRecord > playTime;
+        if (isNewPlayTime) DataManager.Instance.TrySetPlayTime(difficulty, playTime);
+
+        float targetTime = isNewPlayTime ? playTime : highTimeRecord;
+        string timeRecordText = string.Format("{0:00}:{1:00}:{2:00}.{3:0}",
+            (int)(targetTime / 3600), (int)((targetTime % 3600) / 60),
+            (int)(targetTime % 60), (int)((targetTime * 10) % 10));
+
+        gameClearScoreText.text = "BEST SCORE" + (isNewHighScore ? " (NEW!)" : "")
+            + $"\n{(isNewHighScore ? gameScore : highScore)}"
+            + "\n\nBEST TIME RECORD" + (isNewPlayTime ? " (NEW!)" : "")
+            + $"\n{(timeRecordText)}";
+
+        DataManager.Instance.SaveData();
     }
 
     public void Fade(bool isIn = true)
@@ -197,5 +231,10 @@ public class GameManager : MonoBehaviour
         Color c = fadePanel.color;
         fadePanel.color = new Color(c.r, c.g, c.b, 0f);
         yield return fadePanel.DOFade(1f, fadeDuration).SetEase(Ease.OutSine).WaitForCompletion();
+    }
+
+    private void OnApplicationQuit()
+    {
+        DataManager.Instance.SaveData();
     }
 }

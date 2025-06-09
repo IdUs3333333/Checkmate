@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 3
   displayName: Attack Speed
   icon: {fileID: -3036626290745232265, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: Decreases attack speed by 6.25/12.5/18.75/25 percent
+  description: Decreases attack speed by 10/20/30/40 percent
   statType: 3
   values:
-  - -0.0625
-  - -0.125
-  - -0.1875
-  - -0.25
+  - -0.1
+  - -0.2
+  - -0.3
+  - -0.4

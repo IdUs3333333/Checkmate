@@ -110,6 +110,7 @@ public class MapBase : MonoBehaviour
     public void OnEntityDestroy()
     {
         currentEntityCount--;
+        GameManager.Instance.GetScore(2);
 
         if(currentEntityCount <= 0)
         {

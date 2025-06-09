@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 2
   displayName: Move Speed
   icon: {fileID: -6571755663383424711, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: Increases move speed by 10/20/30/40 percent
+  description: Increases move speed by 12.5/25/37.5/50 percent
   statType: 2
   values:
-  - 0.4
-  - 0.8
-  - 1.2
-  - 1.6
+  - 0.5
+  - 1
+  - 1.5
+  - 2

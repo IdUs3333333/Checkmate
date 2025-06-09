@@ -66,8 +66,11 @@ public class MapGenerator : MonoBehaviour
 
     public void OnRoomClear(bool isStart = false)
     {
+        if (currentMapType == MapType.BasicCombat || currentMapType == MapType.ExtendedCombat
+            || currentMapType == MapType.EliteCombat || currentMapType == MapType.BossCombat)
+            GameManager.Instance.GetScore(5);
+        GameManager.Instance.GetScore(10);
         GeneratePortal(GameManager.Instance.currentFloor, isStart);
-
     }
 
     public void GeneratePortal(int floor, bool isStart)

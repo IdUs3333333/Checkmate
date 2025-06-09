@@ -60,17 +60,19 @@ public class MysteryPanel : MonoBehaviour
         float elapsed = 0f;
 
         icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1);
+        card.GetComponent<Image>().color = new Color(0.31f, 0.33f, 0.44f, 1f);
+
         while (elapsed < rollDuration)
         {
             selected = allMysteryEvents[Random.Range(0, allMysteryEvents.Count)];
             UpdateCardUI(selected);
+            card.transform.DOShakePosition(0.1f, 10, 100);
             yield return new WaitForSeconds(0.1f);
             elapsed += 0.1f;
         }
 
-        card.GetComponent<Image>().color = new Color(0.31f, 0.33f, 0.44f, 1f);
         card.GetComponent<Image>().DOColor(Color.white, 0.2f).SetEase(Ease.OutSine);
-        card.transform.DOShakeScale(0.25f, 0.5f);
+        card.transform.DOShakeScale(0.25f, 0.2f);
         rollSelectButton.interactable = true;
     }
 

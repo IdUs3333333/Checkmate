@@ -1,17 +1,28 @@
 ﻿using System.IO;
 using UnityEngine;
 using SaveSystem.Data;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace SaveSystem.Manager
 {
     public class DataManager : MonoBehaviour
     {
+        public static DataManager Instance { get; private set; }
+
         private string savePath;
         private GameData gameData = new GameData();
 
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
             savePath = Path.Combine(Application.dataPath, "playerData.json");
         }
         private void Start()

@@ -6027,6 +6027,50 @@ MonoBehaviour:
   replayButton: {fileID: 809620822}
   returnButton: {fileID: 1567352030}
   isOpened: 0
+--- !u!1 &1295202302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295202304}
+  - component: {fileID: 1295202303}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1295202303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295202302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210fdacf26d56fd46b110cff98d7528c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1295202304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295202302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1302532992
 GameObject:
   m_ObjectHideFlags: 0
@@ -6972,6 +7016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1276360309}
   gameClearPanel: {fileID: 1454705304}
+  gameClearScoreText: {fileID: 1310588405}
   gamePausePanel: {fileID: 780921188}
   reinforcementPanel: {fileID: 1935851138}
   reinforcePanel: {fileID: 1935851139}
@@ -6983,6 +7028,7 @@ MonoBehaviour:
   difficulty: 0
   gameScore: 0
   maxGameScore: 0
+  playTime: 0
   clearedRoomCount: 0
   currentFloor: 1
   player: {fileID: 981568423}
@@ -9300,3 +9346,4 @@ SceneRoots:
   - {fileID: 1468627034}
   - {fileID: 197819874}
   - {fileID: 1092264032}
+  - {fileID: 1295202304}

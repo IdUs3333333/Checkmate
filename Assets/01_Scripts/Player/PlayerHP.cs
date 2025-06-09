@@ -46,14 +46,20 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    public void Damage(int value = 1)
+    public void Damage(int value = 1, bool isDebug = false)
     {
-        if(playerHP > 0)
+        if (!isDebug)
+        {
+            int percent = Random.Range(1, 101);
+            if (percent <= player.stats.evasionChance) return;
+        }
+
+        if (playerHP > 0)
         {
             int prevHP = playerHP;
             playerHP = Mathf.Clamp(playerHP - value, 0, player.stats.hp);
-            
-            for(int i = playerHP; i < prevHP; i++)
+
+            for (int i = playerHP; i < prevHP; i++)
             {
                 hpHearts[i].gameObject.transform.DOComplete();
                 hpHearts[i].gameObject.transform.DOShakePosition(0.5f, 10, 100);
@@ -61,7 +67,7 @@ public class PlayerHP : MonoBehaviour
 
             UpdateHeartSprites();
 
-            if(playerHP <= 0)
+            if (playerHP <= 0)
             {
                 GameManager.Instance.GameOver();
             }

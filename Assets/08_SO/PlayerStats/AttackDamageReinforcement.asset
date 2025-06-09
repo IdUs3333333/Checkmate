@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 1
   displayName: Attack Damage
   icon: {fileID: 2368987747519767557, guid: dd23c862b9567774a90b10434baca3ed, type: 3}
-  description: Increases attackdamage by 25/50/75/100 percent
+  description: Increases attackdamage by 30/60/90/120 percent
   statType: 1
   values:
-  - 0.75
-  - 1.5
-  - 2.25
-  - 3
+  - 0.9
+  - 1.8
+  - 2.7
+  - 3.6
